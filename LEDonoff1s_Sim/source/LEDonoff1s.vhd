@@ -17,8 +17,8 @@ Architecture rtl Of LEDonoff1s Is
 
 -- Signal declaration
 	signal 		rLED0	:	std_logic := '0';
-	signal		LED0Cnt	:	std_logic_vector(25 downto 0) := (others=>'0');
-	constant	MaxCnt	: 	std_logic_vector(25 downto 0) := "10" & x"FAF080"; -- 50,000,000 for 1 second at 50MHz
+	signal		LED0Cnt	:	std_logic_vector(7 downto 0) := (others=>'0');
+	constant	MaxCnt	: 	std_logic_vector(7 downto 0) := x"32"; -- 50 for 1 us at 50MHz
 Begin
     -- Output assignment
     LED0	<=	not rLED0;

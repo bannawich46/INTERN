@@ -48,11 +48,11 @@ Begin
 		wait until rising_edge(Clk50);
         -- Test case 1: Reset not pressed
         Rst <= '1';
-        wait for 5 sec;
+        wait for 5000 ns;
 
         -- Test case 2: Press Reset
         Rst <= '0';
-        wait for 2 sec;
+        wait for 2000 ns;
 
         -- Test case 3: Release Reset
         Rst <= '1';
