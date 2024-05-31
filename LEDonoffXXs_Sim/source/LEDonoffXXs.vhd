@@ -22,7 +22,7 @@ Architecture rtl Of LEDonoffXXs Is
 -- Signal declaration
 	signal 	rLED0    		:	std_logic;
 	constant MaxCnt			: 	std_logic_vector(7 downto 0) := x"32"; -- 50 for 1us at 50MHz
-	constant MaxCnt2			: 	std_logic_vector(7 downto 0) := x"19"; -- 25 for 0.5us at 50MHz
+	constant MaxCnt2		: 	std_logic_vector(7 downto 0) := x"19"; -- 25 for 0.5us at 50MHz
 	signal	rLED0Cnt		:	std_logic_vector(25 downto 0) := (others=>'0');
 	
 	type	StateType is
