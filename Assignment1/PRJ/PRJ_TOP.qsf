@@ -58,10 +58,6 @@ set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_RO
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_location_assignment PIN_M8 -to CLK50
 set_instance_assignment -name IO_STANDARD "2.5 V" -to CLK50
-set_location_assignment PIN_H21 -to KEY0
-set_location_assignment PIN_H22 -to KEY1
-set_instance_assignment -name IO_STANDARD "1.5 V SCHMITT TRIGGER" -to KEY0
-set_instance_assignment -name IO_STANDARD "1.5 V SCHMITT TRIGGER" -to KEY1
 set_location_assignment PIN_J21 -to RST_L
 set_instance_assignment -name IO_STANDARD "1.5 V SCHMITT TRIGGER" -to RST_L
 set_location_assignment PIN_C7 -to LED_L[0]
@@ -92,4 +88,8 @@ set_global_assignment -name OUTPUT_IO_TIMING_NEAR_END_VMEAS "HALF VCCIO" -rise
 set_global_assignment -name OUTPUT_IO_TIMING_NEAR_END_VMEAS "HALF VCCIO" -fall
 set_global_assignment -name OUTPUT_IO_TIMING_FAR_END_VMEAS "HALF SIGNAL SWING" -rise
 set_global_assignment -name OUTPUT_IO_TIMING_FAR_END_VMEAS "HALF SIGNAL SWING" -fall
+set_location_assignment PIN_H21 -to KEY0_L
+set_location_assignment PIN_H22 -to KEY1_L
+set_instance_assignment -name IO_STANDARD "1.5 V SCHMITT TRIGGER" -to KEY0_L
+set_instance_assignment -name IO_STANDARD "1.5 V SCHMITT TRIGGER" -to KEY1_L
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

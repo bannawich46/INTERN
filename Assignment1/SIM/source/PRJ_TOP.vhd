@@ -10,8 +10,8 @@ Entity PRJ_TOP Is
 		RST_L		: in  STD_LOGIC;
 
 		-- Input KEY[0] & KEY[1]
-		KEY0		: in  STD_LOGIC;
-		KEY1		: in  STD_LOGIC;
+		KEY0_L		: in  STD_LOGIC;
+		KEY1_L		: in  STD_LOGIC;
 
 		-- LED Output
 		LED_L		: out STD_LOGIC_VECTOR(7 downto 0) := (others=>'0')
@@ -44,8 +44,8 @@ Architecture RTL Of PRJ_TOP Is
 		RST_L		: in STD_LOGIC;
 
 		-- KEY0 & KEY1 Input
-		KEY0		: in  STD_LOGIC;
-		KEY1		: in  STD_LOGIC;
+		KEY0_L		: in  STD_LOGIC;
+		KEY1_L		: in  STD_LOGIC;
 
 		-- Debounced KEY0 & KEY1 One Shot
 		iKEY0_ONESHOT	: out STD_LOGIC;
@@ -88,8 +88,8 @@ Begin
 		iCLK1K	=>	wCLK1K	,
 		RST_L	=>	RST_L	,
 
-		KEY0	=>	KEY0	,
-		KEY1	=>	KEY1	,
+		KEY0_L	=>	KEY0_L	,
+		KEY1_L	=>	KEY1_L	,
 
 		iKEY0_ONESHOT	=>	wKEY0_ONESHOT	,
 		iKEY1_ONESHOT	=>	wKEY1_ONESHOT	
