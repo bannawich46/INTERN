@@ -10,8 +10,8 @@ Architecture HTWTestBench of TBPRJ_TOP is
 	constant kTCLK		: time := 20 ns;
 	signal wCLK50		: STD_LOGIC := '0';
 	signal wRST_L		: STD_LOGIC := '1';
-	signal wKEY0		: STD_LOGIC := '1';
-	signal wKEY1		: STD_LOGIC := '1';
+	signal wKEY0_L		: STD_LOGIC := '1';
+	signal wKEY1_L		: STD_LOGIC := '1';
 	signal wLED_L		: STD_LOGIC_VECTOR(7 downto 0) := (others=>'0');
 
 	signal	wCLK1K			: STD_LOGIC;
@@ -25,56 +25,56 @@ Architecture HTWTestBench of TBPRJ_TOP is
 		RST_L		: in  STD_LOGIC;
 
 		-- Input KEY[0] & KEY[1]
-		KEY0		: in  STD_LOGIC;
-		KEY1		: in  STD_LOGIC;
+		KEY0_L		: in  STD_LOGIC;
+		KEY1_L		: in  STD_LOGIC;
 
 		-- LED Output
 		LED_L		: out STD_LOGIC_VECTOR(7 downto 0) := (others=>'0')
 	);
 	End component;
 
-	Component CLKDIVIDER Is
-	Port 
-	(
-		CLK50		: in  STD_LOGIC;
-		RST_L		: in  STD_LOGIC;
-		iCLK1K		: out STD_LOGIC
-	);
-	End Component CLKDIVIDER;
+	-- Component CLKDIVIDER Is
+	-- Port 
+	-- (
+		-- CLK50		: in  STD_LOGIC;
+		-- RST_L		: in  STD_LOGIC;
+		-- iCLK1K		: out STD_LOGIC
+	-- );
+	-- End Component CLKDIVIDER;
 
-	Component DEBOUNCE Is
-	Port 
-	(
-		-- Clk 50 MHz & Clk 1 kHz
-		CLK50		: in  STD_LOGIC;
-		iCLK1K		: in  STD_LOGIC;
-		RST_L		: in STD_LOGIC;
+	-- Component DEBOUNCE Is
+	-- Port 
+	-- (
+		-- -- Clk 50 MHz & Clk 1 kHz
+		-- CLK50		: in  STD_LOGIC;
+		-- iCLK1K		: in  STD_LOGIC;
+		-- RST_L		: in STD_LOGIC;
 
-		-- KEY0 & KEY1 Input
-		KEY0		: in  STD_LOGIC;
-		KEY1		: in  STD_LOGIC;
+		-- -- KEY0 & KEY1 Input
+		-- KEY0_L		: in  STD_LOGIC;
+		-- KEY1_L		: in  STD_LOGIC;
 
-		-- Debounced KEY0 & KEY1 One Shot
-		iKEY0_ONESHOT	: out STD_LOGIC;
-		iKEY1_ONESHOT	: out STD_LOGIC
-	);
-	End Component DEBOUNCE;
+		-- -- Debounced KEY0 & KEY1 One Shot
+		-- iKEY0_ONESHOT	: out STD_LOGIC;
+		-- iKEY1_ONESHOT	: out STD_LOGIC
+	-- );
+	-- End Component DEBOUNCE;
 
-	Component LEDCONTROL Is
-	Port 
-	(
-		-- Clk 50 MHz
-		CLK50		: in  STD_LOGIC;
-		RST_L		: in  STD_LOGIC;
+	-- Component LEDCONTROL Is
+	-- Port 
+	-- (
+		-- -- Clk 50 MHz
+		-- CLK50		: in  STD_LOGIC;
+		-- RST_L		: in  STD_LOGIC;
 
-		-- Debounced KEY0 & KEY1 One Shot
-		iKEY0_ONESHOT	: in  STD_LOGIC;
-		iKEY1_ONESHOT	: in  STD_LOGIC;
+		-- -- Debounced KEY0 & KEY1 One Shot
+		-- iKEY0_ONESHOT	: in  STD_LOGIC;
+		-- iKEY1_ONESHOT	: in  STD_LOGIC;
 
-		-- LED[7: 0]
-		LED_L		: out STD_LOGIC_VECTOR (7 downto 0)
-	);
-	End Component LEDCONTROL;
+		-- -- LED[7: 0]
+		-- LED_L		: out STD_LOGIC_VECTOR (7 downto 0)
+	-- );
+	-- End Component LEDCONTROL;
 
 Begin
 	
@@ -91,44 +91,44 @@ Begin
 	(
 		CLK50	=>	wCLK50	,
 		RST_L	=>	wRST_L	,
-		KEY0	=>	wKEY0	,
-		KEY1	=>	wKEY1	,
+		KEY0_L	=>	wKEY0_L	,
+		KEY1_L	=>	wKEY1_L	,
 		LED_L	=>	wLED_L
 	);
 	
-	u_CLKDIVIDER : CLKDIVIDER
-	Port map
-	(
-		CLK50	=>	wCLK50	,
-		RST_L	=>	wRST_L	,
-		iCLK1K	=>	wCLK1K
-	);
+	-- u_CLKDIVIDER : CLKDIVIDER
+	-- Port map
+	-- (
+		-- CLK50	=>	wCLK50	,
+		-- RST_L	=>	wRST_L	,
+		-- iCLK1K	=>	wCLK1K
+	-- );
 
-	u_DEBOUNCE : DEBOUNCE
-	Port map
-	(
-		CLK50	=>	wCLK50	,
-		iCLK1K	=>	wCLK1K	,
-		RST_L	=>	wRST_L	,
+	-- u_DEBOUNCE : DEBOUNCE
+	-- Port map
+	-- (
+		-- CLK50	=>	wCLK50	,
+		-- iCLK1K	=>	wCLK1K	,
+		-- RST_L	=>	wRST_L	,
 
-		KEY0	=>	wKEY0	,
-		KEY1	=>	wKEY1	,
+		-- KEY0_L	=>	wKEY0_L	,
+		-- KEY1_L	=>	wKEY1_L	,
 
-		iKEY0_ONESHOT	=>	wKEY0_ONESHOT	,
-		iKEY1_ONESHOT	=>	wKEY1_ONESHOT	
-	);
+		-- iKEY0_ONESHOT	=>	wKEY0_ONESHOT	,
+		-- iKEY1_ONESHOT	=>	wKEY1_ONESHOT	
+	-- );
 
-	u_LEDCONTROL : LEDCONTROL
-	Port map
-	(
-		CLK50	=>	wCLK50	,
-		RST_L	=>	wRST_L	,
+	-- u_LEDCONTROL : LEDCONTROL
+	-- Port map
+	-- (
+		-- CLK50	=>	wCLK50	,
+		-- RST_L	=>	wRST_L	,
 
-		iKEY0_ONESHOT	=>	wKEY0_ONESHOT	,
-		iKEY1_ONESHOT	=>	wKEY1_ONESHOT	,
+		-- iKEY0_ONESHOT	=>	wKEY0_ONESHOT	,
+		-- iKEY1_ONESHOT	=>	wKEY1_ONESHOT	,
 
-		LED_L	=>	wLED_L
-	);
+		-- LED_L	=>	wLED_L
+	-- );
 
 	u_Test : process
 	Begin
@@ -140,17 +140,17 @@ Begin
 		wait until rising_edge(wCLK50);
 		-- Test case 1: KEY0 pressed
 		for i in 1 to 10 loop
-			wKEY0 <= '0';
+			wKEY0_L <= '0';
 			wait for 10 us;
-			wKEY0 <= '1';
+			wKEY0_L <= '1';
 			wait for 10 us;
 		end loop;
 
 		-- Test case 2: KEY1 pressed
 		for i in 1 to 8 loop
-			wKEY1 <= '0';
+			wKEY1_L <= '0';
 			wait for 20 us;
-			wKEY1 <= '1';
+			wKEY1_L <= '1';
 			wait for 10 us;
 		end loop;
 
@@ -161,11 +161,11 @@ Begin
 		wait for 10 us;
 
 		-- Test case 4: KEY0 & KEY1 pressed at the same time
-		wKEY0 <= '0';
-		wKEY1 <= '0';
+		wKEY0_L <= '0';
+		wKEY1_L <= '0';
 		wait for 10 us;
-		wKEY0 <= '1';
-		wKEY1 <= '1';
+		wKEY0_L <= '1';
+		wKEY1_L <= '1';
 		wait for 10 us;
 
         -- End of test
