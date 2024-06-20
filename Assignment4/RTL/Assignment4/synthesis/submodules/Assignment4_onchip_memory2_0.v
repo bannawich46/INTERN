@@ -36,7 +36,7 @@ module Assignment4_onchip_memory2_0 (
                                     )
 ;
 
-  parameter INIT_FILE = "onchip_mem.hex";
+  parameter INIT_FILE = "D:/Git/INTERN_MAX10_DECA/Assignment4/RTL/software/Assignment4/mem_init/onchip_mem.hex";
 
 
   output  [ 31: 0] readdata;

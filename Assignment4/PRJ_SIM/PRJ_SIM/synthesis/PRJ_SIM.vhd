@@ -8,33 +8,21 @@ use IEEE.numeric_std.all;
 
 entity PRJ_SIM is
 	port (
-		AvalonSimpleMaster_0_avm_m0_address     : in  std_logic_vector(7 downto 0)  := (others => '0'); -- AvalonSimpleMaster_0_avm_m0.address
-		AvalonSimpleMaster_0_avm_m0_read        : in  std_logic                     := '0';             --                            .read
-		AvalonSimpleMaster_0_avm_m0_waitrequest : out std_logic;                                        --                            .waitrequest
-		AvalonSimpleMaster_0_avm_m0_readdata    : out std_logic_vector(31 downto 0);                    --                            .readdata
-		AvalonSimpleMaster_0_avm_m0_write       : in  std_logic                     := '0';             --                            .write
-		AvalonSimpleMaster_0_avm_m0_writedata   : in  std_logic_vector(31 downto 0) := (others => '0'); --                            .writedata
-		AvalonSimpleMaster_0_reset_reset        : out std_logic;                                        --  AvalonSimpleMaster_0_reset.reset
-		clk_clk                                 : in  std_logic                     := '0';             --                         clk.clk
-		pio_0_external_connection_export        : out std_logic_vector(7 downto 0);                     --   pio_0_external_connection.export
-		reset_reset_n                           : in  std_logic                     := '0'              --                       reset.reset_n
+		AvalonSimpleMaster_0_avm_m0_address     : in    std_logic_vector(7 downto 0)  := (others => '0'); -- AvalonSimpleMaster_0_avm_m0.address
+		AvalonSimpleMaster_0_avm_m0_read        : in    std_logic                     := '0';             --                            .read
+		AvalonSimpleMaster_0_avm_m0_waitrequest : out   std_logic;                                        --                            .waitrequest
+		AvalonSimpleMaster_0_avm_m0_readdata    : out   std_logic_vector(31 downto 0);                    --                            .readdata
+		AvalonSimpleMaster_0_avm_m0_write       : in    std_logic                     := '0';             --                            .write
+		AvalonSimpleMaster_0_avm_m0_writedata   : in    std_logic_vector(31 downto 0) := (others => '0'); --                            .writedata
+		AvalonSimpleMaster_0_reset_reset        : out   std_logic;                                        --  AvalonSimpleMaster_0_reset.reset
+		clk_clk                                 : in    std_logic                     := '0';             --                         clk.clk
+		pio_0_conduit_end_export                : inout std_logic_vector(7 downto 0)  := (others => '0'); --           pio_0_conduit_end.export
+		pio_1_conduit_end_export                : inout std_logic_vector(0 downto 0)  := (others => '0'); --           pio_1_conduit_end.export
+		reset_reset_n                           : in    std_logic                     := '0'              --                       reset.reset_n
 	);
 end entity PRJ_SIM;
 
 architecture rtl of PRJ_SIM is
-	component PRJ_SIM_pio_0 is
-		port (
-			clk        : in  std_logic                     := 'X';             -- clk
-			reset_n    : in  std_logic                     := 'X';             -- reset_n
-			address    : in  std_logic_vector(1 downto 0)  := (others => 'X'); -- address
-			write_n    : in  std_logic                     := 'X';             -- write_n
-			writedata  : in  std_logic_vector(31 downto 0) := (others => 'X'); -- writedata
-			chipselect : in  std_logic                     := 'X';             -- chipselect
-			readdata   : out std_logic_vector(31 downto 0);                    -- readdata
-			out_port   : out std_logic_vector(7 downto 0)                      -- export
-		);
-	end component PRJ_SIM_pio_0;
-
 	component PRJ_SIM_mm_interconnect_0 is
 		port (
 			clk_0_clk_clk                                          : in  std_logic                     := 'X';             -- clk
@@ -45,11 +33,18 @@ architecture rtl of PRJ_SIM is
 			AvalonSimpleMaster_0_avm_m0_readdata                   : out std_logic_vector(31 downto 0);                    -- readdata
 			AvalonSimpleMaster_0_avm_m0_write                      : in  std_logic                     := 'X';             -- write
 			AvalonSimpleMaster_0_avm_m0_writedata                  : in  std_logic_vector(31 downto 0) := (others => 'X'); -- writedata
-			pio_0_s1_address                                       : out std_logic_vector(1 downto 0);                     -- address
-			pio_0_s1_write                                         : out std_logic;                                        -- write
-			pio_0_s1_readdata                                      : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
-			pio_0_s1_writedata                                     : out std_logic_vector(31 downto 0);                    -- writedata
-			pio_0_s1_chipselect                                    : out std_logic                                         -- chipselect
+			pio_0_avalon_slave_0_address                           : out std_logic_vector(1 downto 0);                     -- address
+			pio_0_avalon_slave_0_write                             : out std_logic;                                        -- write
+			pio_0_avalon_slave_0_read                              : out std_logic;                                        -- read
+			pio_0_avalon_slave_0_readdata                          : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
+			pio_0_avalon_slave_0_writedata                         : out std_logic_vector(31 downto 0);                    -- writedata
+			pio_0_avalon_slave_0_chipselect                        : out std_logic;                                        -- chipselect
+			pio_1_avalon_slave_0_address                           : out std_logic_vector(1 downto 0);                     -- address
+			pio_1_avalon_slave_0_write                             : out std_logic;                                        -- write
+			pio_1_avalon_slave_0_read                              : out std_logic;                                        -- read
+			pio_1_avalon_slave_0_readdata                          : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
+			pio_1_avalon_slave_0_writedata                         : out std_logic_vector(31 downto 0);                    -- writedata
+			pio_1_avalon_slave_0_chipselect                        : out std_logic                                         -- chipselect
 		);
 	end component PRJ_SIM_mm_interconnect_0;
 
@@ -119,45 +114,116 @@ architecture rtl of PRJ_SIM is
 		);
 	end component altera_reset_controller;
 
-	signal mm_interconnect_0_pio_0_s1_chipselect      : std_logic;                     -- mm_interconnect_0:pio_0_s1_chipselect -> pio_0:chipselect
-	signal mm_interconnect_0_pio_0_s1_readdata        : std_logic_vector(31 downto 0); -- pio_0:readdata -> mm_interconnect_0:pio_0_s1_readdata
-	signal mm_interconnect_0_pio_0_s1_address         : std_logic_vector(1 downto 0);  -- mm_interconnect_0:pio_0_s1_address -> pio_0:address
-	signal mm_interconnect_0_pio_0_s1_write           : std_logic;                     -- mm_interconnect_0:pio_0_s1_write -> mm_interconnect_0_pio_0_s1_write:in
-	signal mm_interconnect_0_pio_0_s1_writedata       : std_logic_vector(31 downto 0); -- mm_interconnect_0:pio_0_s1_writedata -> pio_0:writedata
-	signal rst_controller_reset_out_reset             : std_logic;                     -- rst_controller:reset_out -> [AvalonSimpleMaster_0_reset_reset, AvalonSimpleMaster_0_reset_reset:in, mm_interconnect_0:AvalonSimpleMaster_0_reset_reset_bridge_in_reset_reset]
-	signal reset_reset_n_ports_inv                    : std_logic;                     -- reset_reset_n:inv -> rst_controller:reset_in0
-	signal mm_interconnect_0_pio_0_s1_write_ports_inv : std_logic;                     -- mm_interconnect_0_pio_0_s1_write:inv -> pio_0:write_n
-	signal avalonsimplemaster_0_reset_reset_ports_inv : std_logic;                     -- AvalonSimpleMaster_0_reset_reset:inv -> pio_0:reset_n
+	component prj_sim_pio_0 is
+		generic (
+			DATA_WIDTH    : integer := 8;
+			PIO_DIRECTION : string  := "OUTPUT"
+		);
+		port (
+			clk          : in    std_logic                     := 'X';             --          clock.clk
+			reset_n      : in    std_logic                     := 'X';             --          reset.reset_n
+			address      : in    std_logic_vector(1 downto 0)  := (others => 'X'); -- avalon_slave_0.address
+			read         : in    std_logic                     := 'X';             --               .read
+			readdata     : out   std_logic_vector(31 downto 0);                    --               .readdata
+			write        : in    std_logic                     := 'X';             --               .write
+			writedata    : in    std_logic_vector(31 downto 0) := (others => 'X'); --               .writedata
+			chipselect   : in    std_logic                     := 'X';             --               .chipselect
+			pio_external : inout std_logic_vector(7 downto 0)  := (others => 'X')  --    conduit_end.export
+		);
+	end component prj_sim_pio_0;
+
+	component prj_sim_pio_1 is
+		generic (
+			DATA_WIDTH    : integer := 8;
+			PIO_DIRECTION : string  := "OUTPUT"
+		);
+		port (
+			clk          : in    std_logic                     := 'X';             --          clock.clk
+			reset_n      : in    std_logic                     := 'X';             --          reset.reset_n
+			address      : in    std_logic_vector(1 downto 0)  := (others => 'X'); -- avalon_slave_0.address
+			read         : in    std_logic                     := 'X';             --               .read
+			readdata     : out   std_logic_vector(31 downto 0);                    --               .readdata
+			write        : in    std_logic                     := 'X';             --               .write
+			writedata    : in    std_logic_vector(31 downto 0) := (others => 'X'); --               .writedata
+			chipselect   : in    std_logic                     := 'X';             --               .chipselect
+			pio_external : inout std_logic_vector(0 downto 0)  := (others => 'X')  --    conduit_end.export
+		);
+	end component prj_sim_pio_1;
+
+	signal mm_interconnect_0_pio_0_avalon_slave_0_chipselect : std_logic;                     -- mm_interconnect_0:pio_0_avalon_slave_0_chipselect -> pio_0:chipselect
+	signal mm_interconnect_0_pio_0_avalon_slave_0_readdata   : std_logic_vector(31 downto 0); -- pio_0:readdata -> mm_interconnect_0:pio_0_avalon_slave_0_readdata
+	signal mm_interconnect_0_pio_0_avalon_slave_0_address    : std_logic_vector(1 downto 0);  -- mm_interconnect_0:pio_0_avalon_slave_0_address -> pio_0:address
+	signal mm_interconnect_0_pio_0_avalon_slave_0_read       : std_logic;                     -- mm_interconnect_0:pio_0_avalon_slave_0_read -> pio_0:read
+	signal mm_interconnect_0_pio_0_avalon_slave_0_write      : std_logic;                     -- mm_interconnect_0:pio_0_avalon_slave_0_write -> pio_0:write
+	signal mm_interconnect_0_pio_0_avalon_slave_0_writedata  : std_logic_vector(31 downto 0); -- mm_interconnect_0:pio_0_avalon_slave_0_writedata -> pio_0:writedata
+	signal mm_interconnect_0_pio_1_avalon_slave_0_chipselect : std_logic;                     -- mm_interconnect_0:pio_1_avalon_slave_0_chipselect -> pio_1:chipselect
+	signal mm_interconnect_0_pio_1_avalon_slave_0_readdata   : std_logic_vector(31 downto 0); -- pio_1:readdata -> mm_interconnect_0:pio_1_avalon_slave_0_readdata
+	signal mm_interconnect_0_pio_1_avalon_slave_0_address    : std_logic_vector(1 downto 0);  -- mm_interconnect_0:pio_1_avalon_slave_0_address -> pio_1:address
+	signal mm_interconnect_0_pio_1_avalon_slave_0_read       : std_logic;                     -- mm_interconnect_0:pio_1_avalon_slave_0_read -> pio_1:read
+	signal mm_interconnect_0_pio_1_avalon_slave_0_write      : std_logic;                     -- mm_interconnect_0:pio_1_avalon_slave_0_write -> pio_1:write
+	signal mm_interconnect_0_pio_1_avalon_slave_0_writedata  : std_logic_vector(31 downto 0); -- mm_interconnect_0:pio_1_avalon_slave_0_writedata -> pio_1:writedata
+	signal rst_controller_reset_out_reset                    : std_logic;                     -- rst_controller:reset_out -> [AvalonSimpleMaster_0_reset_reset, AvalonSimpleMaster_0_reset_reset:in, mm_interconnect_0:AvalonSimpleMaster_0_reset_reset_bridge_in_reset_reset]
+	signal reset_reset_n_ports_inv                           : std_logic;                     -- reset_reset_n:inv -> rst_controller:reset_in0
+	signal avalonsimplemaster_0_reset_reset_ports_inv        : std_logic;                     -- AvalonSimpleMaster_0_reset_reset:inv -> [pio_0:reset_n, pio_1:reset_n]
 
 begin
 
-	pio_0 : component PRJ_SIM_pio_0
+	pio_0 : component prj_sim_pio_0
+		generic map (
+			DATA_WIDTH    => 8,
+			PIO_DIRECTION => "OUTPUT"
+		)
 		port map (
-			clk        => clk_clk,                                    --                 clk.clk
-			reset_n    => avalonsimplemaster_0_reset_reset_ports_inv, --               reset.reset_n
-			address    => mm_interconnect_0_pio_0_s1_address,         --                  s1.address
-			write_n    => mm_interconnect_0_pio_0_s1_write_ports_inv, --                    .write_n
-			writedata  => mm_interconnect_0_pio_0_s1_writedata,       --                    .writedata
-			chipselect => mm_interconnect_0_pio_0_s1_chipselect,      --                    .chipselect
-			readdata   => mm_interconnect_0_pio_0_s1_readdata,        --                    .readdata
-			out_port   => pio_0_external_connection_export            -- external_connection.export
+			clk          => clk_clk,                                           --          clock.clk
+			reset_n      => avalonsimplemaster_0_reset_reset_ports_inv,        --          reset.reset_n
+			address      => mm_interconnect_0_pio_0_avalon_slave_0_address,    -- avalon_slave_0.address
+			read         => mm_interconnect_0_pio_0_avalon_slave_0_read,       --               .read
+			readdata     => mm_interconnect_0_pio_0_avalon_slave_0_readdata,   --               .readdata
+			write        => mm_interconnect_0_pio_0_avalon_slave_0_write,      --               .write
+			writedata    => mm_interconnect_0_pio_0_avalon_slave_0_writedata,  --               .writedata
+			chipselect   => mm_interconnect_0_pio_0_avalon_slave_0_chipselect, --               .chipselect
+			pio_external => pio_0_conduit_end_export                           --    conduit_end.export
+		);
+
+	pio_1 : component prj_sim_pio_1
+		generic map (
+			DATA_WIDTH    => 1,
+			PIO_DIRECTION => "INPUT"
+		)
+		port map (
+			clk          => clk_clk,                                           --          clock.clk
+			reset_n      => avalonsimplemaster_0_reset_reset_ports_inv,        --          reset.reset_n
+			address      => mm_interconnect_0_pio_1_avalon_slave_0_address,    -- avalon_slave_0.address
+			read         => mm_interconnect_0_pio_1_avalon_slave_0_read,       --               .read
+			readdata     => mm_interconnect_0_pio_1_avalon_slave_0_readdata,   --               .readdata
+			write        => mm_interconnect_0_pio_1_avalon_slave_0_write,      --               .write
+			writedata    => mm_interconnect_0_pio_1_avalon_slave_0_writedata,  --               .writedata
+			chipselect   => mm_interconnect_0_pio_1_avalon_slave_0_chipselect, --               .chipselect
+			pio_external => pio_1_conduit_end_export                           --    conduit_end.export
 		);
 
 	mm_interconnect_0 : component PRJ_SIM_mm_interconnect_0
 		port map (
-			clk_0_clk_clk                                          => clk_clk,                                 --                                        clk_0_clk.clk
-			AvalonSimpleMaster_0_reset_reset_bridge_in_reset_reset => rst_controller_reset_out_reset,          -- AvalonSimpleMaster_0_reset_reset_bridge_in_reset.reset
-			AvalonSimpleMaster_0_avm_m0_address                    => AvalonSimpleMaster_0_avm_m0_address,     --                      AvalonSimpleMaster_0_avm_m0.address
-			AvalonSimpleMaster_0_avm_m0_waitrequest                => AvalonSimpleMaster_0_avm_m0_waitrequest, --                                                 .waitrequest
-			AvalonSimpleMaster_0_avm_m0_read                       => AvalonSimpleMaster_0_avm_m0_read,        --                                                 .read
-			AvalonSimpleMaster_0_avm_m0_readdata                   => AvalonSimpleMaster_0_avm_m0_readdata,    --                                                 .readdata
-			AvalonSimpleMaster_0_avm_m0_write                      => AvalonSimpleMaster_0_avm_m0_write,       --                                                 .write
-			AvalonSimpleMaster_0_avm_m0_writedata                  => AvalonSimpleMaster_0_avm_m0_writedata,   --                                                 .writedata
-			pio_0_s1_address                                       => mm_interconnect_0_pio_0_s1_address,      --                                         pio_0_s1.address
-			pio_0_s1_write                                         => mm_interconnect_0_pio_0_s1_write,        --                                                 .write
-			pio_0_s1_readdata                                      => mm_interconnect_0_pio_0_s1_readdata,     --                                                 .readdata
-			pio_0_s1_writedata                                     => mm_interconnect_0_pio_0_s1_writedata,    --                                                 .writedata
-			pio_0_s1_chipselect                                    => mm_interconnect_0_pio_0_s1_chipselect    --                                                 .chipselect
+			clk_0_clk_clk                                          => clk_clk,                                           --                                        clk_0_clk.clk
+			AvalonSimpleMaster_0_reset_reset_bridge_in_reset_reset => rst_controller_reset_out_reset,                    -- AvalonSimpleMaster_0_reset_reset_bridge_in_reset.reset
+			AvalonSimpleMaster_0_avm_m0_address                    => AvalonSimpleMaster_0_avm_m0_address,               --                      AvalonSimpleMaster_0_avm_m0.address
+			AvalonSimpleMaster_0_avm_m0_waitrequest                => AvalonSimpleMaster_0_avm_m0_waitrequest,           --                                                 .waitrequest
+			AvalonSimpleMaster_0_avm_m0_read                       => AvalonSimpleMaster_0_avm_m0_read,                  --                                                 .read
+			AvalonSimpleMaster_0_avm_m0_readdata                   => AvalonSimpleMaster_0_avm_m0_readdata,              --                                                 .readdata
+			AvalonSimpleMaster_0_avm_m0_write                      => AvalonSimpleMaster_0_avm_m0_write,                 --                                                 .write
+			AvalonSimpleMaster_0_avm_m0_writedata                  => AvalonSimpleMaster_0_avm_m0_writedata,             --                                                 .writedata
+			pio_0_avalon_slave_0_address                           => mm_interconnect_0_pio_0_avalon_slave_0_address,    --                             pio_0_avalon_slave_0.address
+			pio_0_avalon_slave_0_write                             => mm_interconnect_0_pio_0_avalon_slave_0_write,      --                                                 .write
+			pio_0_avalon_slave_0_read                              => mm_interconnect_0_pio_0_avalon_slave_0_read,       --                                                 .read
+			pio_0_avalon_slave_0_readdata                          => mm_interconnect_0_pio_0_avalon_slave_0_readdata,   --                                                 .readdata
+			pio_0_avalon_slave_0_writedata                         => mm_interconnect_0_pio_0_avalon_slave_0_writedata,  --                                                 .writedata
+			pio_0_avalon_slave_0_chipselect                        => mm_interconnect_0_pio_0_avalon_slave_0_chipselect, --                                                 .chipselect
+			pio_1_avalon_slave_0_address                           => mm_interconnect_0_pio_1_avalon_slave_0_address,    --                             pio_1_avalon_slave_0.address
+			pio_1_avalon_slave_0_write                             => mm_interconnect_0_pio_1_avalon_slave_0_write,      --                                                 .write
+			pio_1_avalon_slave_0_read                              => mm_interconnect_0_pio_1_avalon_slave_0_read,       --                                                 .read
+			pio_1_avalon_slave_0_readdata                          => mm_interconnect_0_pio_1_avalon_slave_0_readdata,   --                                                 .readdata
+			pio_1_avalon_slave_0_writedata                         => mm_interconnect_0_pio_1_avalon_slave_0_writedata,  --                                                 .writedata
+			pio_1_avalon_slave_0_chipselect                        => mm_interconnect_0_pio_1_avalon_slave_0_chipselect  --                                                 .chipselect
 		);
 
 	rst_controller : component altera_reset_controller
@@ -226,8 +292,6 @@ begin
 		);
 
 	reset_reset_n_ports_inv <= not reset_reset_n;
-
-	mm_interconnect_0_pio_0_s1_write_ports_inv <= not mm_interconnect_0_pio_0_s1_write;
 
 	avalonsimplemaster_0_reset_reset_ports_inv <= not rst_controller_reset_out_reset;
 

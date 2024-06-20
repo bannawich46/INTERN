@@ -4,7 +4,7 @@
  * Machine generated for CPU 'nios2_gen2_0' in SOPC Builder design 'Assignment4'
  * SOPC Builder design path: ../../Assignment4.sopcinfo
  *
- * Generated: Tue Jun 18 15:29:42 ICT 2024
+ * Generated: Wed Jun 19 18:21:58 ICT 2024
  */
 
 /*
@@ -155,19 +155,19 @@
 #define ALT_NUM_INTERNAL_INTERRUPT_CONTROLLERS 1
 #define ALT_NUM_INTERRUPT_CONTROLLERS 1
 #define ALT_STDERR "/dev/jtag_uart_0"
-#define ALT_STDERR_BASE 0x11010
+#define ALT_STDERR_BASE 0x11020
 #define ALT_STDERR_DEV jtag_uart_0
 #define ALT_STDERR_IS_JTAG_UART
 #define ALT_STDERR_PRESENT
 #define ALT_STDERR_TYPE "altera_avalon_jtag_uart"
 #define ALT_STDIN "/dev/jtag_uart_0"
-#define ALT_STDIN_BASE 0x11010
+#define ALT_STDIN_BASE 0x11020
 #define ALT_STDIN_DEV jtag_uart_0
 #define ALT_STDIN_IS_JTAG_UART
 #define ALT_STDIN_PRESENT
 #define ALT_STDIN_TYPE "altera_avalon_jtag_uart"
 #define ALT_STDOUT "/dev/jtag_uart_0"
-#define ALT_STDOUT_BASE 0x11010
+#define ALT_STDOUT_BASE 0x11020
 #define ALT_STDOUT_DEV jtag_uart_0
 #define ALT_STDOUT_IS_JTAG_UART
 #define ALT_STDOUT_PRESENT
@@ -192,7 +192,7 @@
  */
 
 #define ALT_MODULE_CLASS_jtag_uart_0 altera_avalon_jtag_uart
-#define JTAG_UART_0_BASE 0x11010
+#define JTAG_UART_0_BASE 0x11020
 #define JTAG_UART_0_IRQ 0
 #define JTAG_UART_0_IRQ_INTERRUPT_CONTROLLER_ID 0
 #define JTAG_UART_0_NAME "/dev/jtag_uart_0"
@@ -239,11 +239,25 @@
  */
 
 #define ALT_MODULE_CLASS_pio_0 pio
-#define PIO_0_BASE 0x0
+#define PIO_0_BASE 0x11010
 #define PIO_0_IRQ -1
 #define PIO_0_IRQ_INTERRUPT_CONTROLLER_ID -1
 #define PIO_0_NAME "/dev/pio_0"
 #define PIO_0_SPAN 16
 #define PIO_0_TYPE "pio"
+
+
+/*
+ * pio_1 configuration
+ *
+ */
+
+#define ALT_MODULE_CLASS_pio_1 pio
+#define PIO_1_BASE 0x11000
+#define PIO_1_IRQ -1
+#define PIO_1_IRQ_INTERRUPT_CONTROLLER_ID -1
+#define PIO_1_NAME "/dev/pio_1"
+#define PIO_1_SPAN 16
+#define PIO_1_TYPE "pio"
 
 #endif /* __SYSTEM_H_ */

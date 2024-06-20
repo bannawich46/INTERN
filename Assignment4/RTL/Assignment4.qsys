@@ -9,6 +9,30 @@
    categories="System" />
  <parameter name="bonusData"><![CDATA[bonusData 
 {
+   element Assignment4
+   {
+      datum _originalDeviceFamily
+      {
+         value = "MAX 10";
+         type = "String";
+      }
+   }
+   element Assignment4
+   {
+      datum _originalDeviceFamily
+      {
+         value = "MAX 10";
+         type = "String";
+      }
+   }
+   element Assignment4
+   {
+      datum _originalDeviceFamily
+      {
+         value = "MAX 10";
+         type = "String";
+      }
+   }
    element clk_0
    {
       datum _sortIndex
@@ -29,7 +53,7 @@
    {
       datum baseAddress
       {
-         value = "69648";
+         value = "69664";
          type = "String";
       }
    }
@@ -65,6 +89,38 @@
          type = "String";
       }
    }
+   element pio_0
+   {
+      datum _sortIndex
+      {
+         value = "4";
+         type = "int";
+      }
+   }
+   element pio_0.avalon_slave_0
+   {
+      datum baseAddress
+      {
+         value = "69648";
+         type = "String";
+      }
+   }
+   element pio_1
+   {
+      datum _sortIndex
+      {
+         value = "5";
+         type = "int";
+      }
+   }
+   element pio_1.avalon_slave_0
+   {
+      datum baseAddress
+      {
+         value = "69632";
+         type = "String";
+      }
+   }
 }
 ]]></parameter>
  <parameter name="clockCrossingAdapter" value="HANDSHAKE" />
@@ -87,6 +143,16 @@
  <parameter name="useTestBenchNamingPattern" value="false" />
  <instanceScript></instanceScript>
  <interface name="clk" internal="clk_0.clk_in" type="clock" dir="end" />
+ <interface
+   name="pio_0_conduit_end"
+   internal="pio_0.conduit_end"
+   type="conduit"
+   dir="end" />
+ <interface
+   name="pio_1_conduit_end"
+   internal="pio_1.conduit_end"
+   type="conduit"
+   dir="end" />
  <interface name="reset" internal="clk_0.clk_in_reset" type="reset" dir="end" />
  <module name="clk_0" kind="clock_source" version="17.1" enabled="1">
   <parameter name="clockFrequency" value="50000000" />
@@ -137,7 +203,7 @@
   <parameter name="dataAddrWidth" value="17" />
   <parameter name="dataMasterHighPerformanceAddrWidth" value="1" />
   <parameter name="dataMasterHighPerformanceMapParam" value="" />
-  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='onchip_memory2_0.s1' start='0x8000' end='0x10000' type='altera_avalon_onchip_memory2.s1' /><slave name='nios2_gen2_0.debug_mem_slave' start='0x10800' end='0x11000' type='altera_nios2_gen2.debug_mem_slave' /><slave name='jtag_uart_0.avalon_jtag_slave' start='0x11010' end='0x11018' type='altera_avalon_jtag_uart.avalon_jtag_slave' /></address-map>]]></parameter>
+  <parameter name="dataSlaveMapParam"><![CDATA[<address-map><slave name='onchip_memory2_0.s1' start='0x8000' end='0x10000' type='altera_avalon_onchip_memory2.s1' /><slave name='nios2_gen2_0.debug_mem_slave' start='0x10800' end='0x11000' type='altera_nios2_gen2.debug_mem_slave' /><slave name='pio_1.avalon_slave_0' start='0x11000' end='0x11010' type='pio.avalon_slave_0' /><slave name='pio_0.avalon_slave_0' start='0x11010' end='0x11020' type='pio.avalon_slave_0' /><slave name='jtag_uart_0.avalon_jtag_slave' start='0x11020' end='0x11028' type='altera_avalon_jtag_uart.avalon_jtag_slave' /></address-map>]]></parameter>
   <parameter name="data_master_high_performance_paddr_base" value="0" />
   <parameter name="data_master_high_performance_paddr_size" value="0" />
   <parameter name="data_master_paddr_base" value="0" />
@@ -313,7 +379,7 @@
   <parameter name="enPRInitMode" value="false" />
   <parameter name="enableDiffWidth" value="false" />
   <parameter name="initMemContent" value="true" />
-  <parameter name="initializationFileName" value="onchip_mem.hex" />
+  <parameter name="initializationFileName">D:/Git/INTERN_MAX10_DECA/Assignment4/RTL/software/Assignment4/mem_init/onchip_mem.hex</parameter>
   <parameter name="instanceID" value="NONE" />
   <parameter name="memorySize" value="32768" />
   <parameter name="readDuringWriteMode" value="DONT_CARE" />
@@ -327,13 +393,39 @@
   <parameter name="useShallowMemBlocks" value="false" />
   <parameter name="writable" value="true" />
  </module>
+ <module name="pio_0" kind="pio" version="1.0" enabled="1">
+  <parameter name="DATA_WIDTH" value="8" />
+  <parameter name="PIO_DIRECTION" value="OUTPUT" />
+ </module>
+ <module name="pio_1" kind="pio" version="1.0" enabled="1">
+  <parameter name="DATA_WIDTH" value="1" />
+  <parameter name="PIO_DIRECTION" value="INPUT" />
+ </module>
  <connection
    kind="avalon"
    version="17.1"
    start="nios2_gen2_0.data_master"
    end="jtag_uart_0.avalon_jtag_slave">
   <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x00011020" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="17.1"
+   start="nios2_gen2_0.data_master"
+   end="pio_0.avalon_slave_0">
+  <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x00011010" />
+  <parameter name="defaultConnection" value="false" />
+ </connection>
+ <connection
+   kind="avalon"
+   version="17.1"
+   start="nios2_gen2_0.data_master"
+   end="pio_1.avalon_slave_0">
+  <parameter name="arbitrationPriority" value="1" />
+  <parameter name="baseAddress" value="0x00011000" />
   <parameter name="defaultConnection" value="false" />
  </connection>
  <connection
@@ -379,6 +471,8 @@
    version="17.1"
    start="clk_0.clk"
    end="onchip_memory2_0.clk1" />
+ <connection kind="clock" version="17.1" start="clk_0.clk" end="pio_0.clock" />
+ <connection kind="clock" version="17.1" start="clk_0.clk" end="pio_1.clock" />
  <connection
    kind="interrupt"
    version="17.1"
@@ -396,6 +490,8 @@
    version="17.1"
    start="clk_0.clk_reset"
    end="jtag_uart_0.reset" />
+ <connection kind="reset" version="17.1" start="clk_0.clk_reset" end="pio_0.reset" />
+ <connection kind="reset" version="17.1" start="clk_0.clk_reset" end="pio_1.reset" />
  <connection
    kind="reset"
    version="17.1"
