@@ -8,8 +8,8 @@ Entity PRJ_TOP is
 	(
 		CLK	:	in  std_logic;
 		RST	:	in  std_logic;
-		SW	:	in  std_logic_vector(0 downto 0);
-		LED	: 	out std_logic_vector(7 downto 0)
+		SW	:	inout  std_logic_vector(0 downto 0);
+		LED	: 	inout std_logic_vector(7 downto 0)
 	);
 End PRJ_TOP;
 
@@ -26,7 +26,6 @@ Architecture RTL of PRJ_TOP is
 
 
 signal	wLED	:  std_logic_vector(7 downto 0);
-signal	wSW	:  std_logic_vector(0 downto 0);
 
 Begin
 
@@ -35,10 +34,9 @@ Begin
 		clk_clk									=> CLK,
 		reset_reset_n							=> RST,
 		pio_0_conduit_end_export				=> wLED,
-		pio_1_conduit_end_export				=> wSW
+		pio_1_conduit_end_export				=> SW
 	);
 	
-	LED <= wLED;
-	wSW <= SW;
+	LED <= not wLED;
 
 End RTL;

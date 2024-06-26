@@ -116,90 +116,86 @@ architecture rtl of PRJ_SIM is
 
 	component prj_sim_pio_0 is
 		generic (
-			DATA_WIDTH    : integer := 8;
-			PIO_DIRECTION : string  := "OUTPUT"
+			wDATA_WIDTH : integer := 8
 		);
 		port (
-			clk          : in    std_logic                     := 'X';             --          clock.clk
-			reset_n      : in    std_logic                     := 'X';             --          reset.reset_n
-			address      : in    std_logic_vector(1 downto 0)  := (others => 'X'); -- avalon_slave_0.address
-			read         : in    std_logic                     := 'X';             --               .read
-			readdata     : out   std_logic_vector(31 downto 0);                    --               .readdata
-			write        : in    std_logic                     := 'X';             --               .write
-			writedata    : in    std_logic_vector(31 downto 0) := (others => 'X'); --               .writedata
-			chipselect   : in    std_logic                     := 'X';             --               .chipselect
-			pio_external : inout std_logic_vector(7 downto 0)  := (others => 'X')  --    conduit_end.export
+			CLK          : in    std_logic                     := 'X';             --          clock.clk
+			RST_L        : in    std_logic                     := 'X';             --          reset.reset_n
+			iADDRESS     : in    std_logic_vector(1 downto 0)  := (others => 'X'); -- avalon_slave_0.address
+			iREAD        : in    std_logic                     := 'X';             --               .read
+			iREADDATA    : out   std_logic_vector(31 downto 0);                    --               .readdata
+			iWRITE       : in    std_logic                     := 'X';             --               .write
+			iWRITEDATA   : in    std_logic_vector(31 downto 0) := (others => 'X'); --               .writedata
+			iCHIPSELECT  : in    std_logic                     := 'X';             --               .chipselect
+			PIO_EXTERNAL : inout std_logic_vector(7 downto 0)  := (others => 'X')  --    conduit_end.export
 		);
 	end component prj_sim_pio_0;
 
 	component prj_sim_pio_1 is
 		generic (
-			DATA_WIDTH    : integer := 8;
-			PIO_DIRECTION : string  := "OUTPUT"
+			wDATA_WIDTH : integer := 8
 		);
 		port (
-			clk          : in    std_logic                     := 'X';             --          clock.clk
-			reset_n      : in    std_logic                     := 'X';             --          reset.reset_n
-			address      : in    std_logic_vector(1 downto 0)  := (others => 'X'); -- avalon_slave_0.address
-			read         : in    std_logic                     := 'X';             --               .read
-			readdata     : out   std_logic_vector(31 downto 0);                    --               .readdata
-			write        : in    std_logic                     := 'X';             --               .write
-			writedata    : in    std_logic_vector(31 downto 0) := (others => 'X'); --               .writedata
-			chipselect   : in    std_logic                     := 'X';             --               .chipselect
-			pio_external : inout std_logic_vector(0 downto 0)  := (others => 'X')  --    conduit_end.export
+			CLK          : in    std_logic                     := 'X';             --          clock.clk
+			RST_L        : in    std_logic                     := 'X';             --          reset.reset_n
+			iADDRESS     : in    std_logic_vector(1 downto 0)  := (others => 'X'); -- avalon_slave_0.address
+			iREAD        : in    std_logic                     := 'X';             --               .read
+			iREADDATA    : out   std_logic_vector(31 downto 0);                    --               .readdata
+			iWRITE       : in    std_logic                     := 'X';             --               .write
+			iWRITEDATA   : in    std_logic_vector(31 downto 0) := (others => 'X'); --               .writedata
+			iCHIPSELECT  : in    std_logic                     := 'X';             --               .chipselect
+			PIO_EXTERNAL : inout std_logic_vector(0 downto 0)  := (others => 'X')  --    conduit_end.export
 		);
 	end component prj_sim_pio_1;
 
-	signal mm_interconnect_0_pio_0_avalon_slave_0_chipselect : std_logic;                     -- mm_interconnect_0:pio_0_avalon_slave_0_chipselect -> pio_0:chipselect
-	signal mm_interconnect_0_pio_0_avalon_slave_0_readdata   : std_logic_vector(31 downto 0); -- pio_0:readdata -> mm_interconnect_0:pio_0_avalon_slave_0_readdata
-	signal mm_interconnect_0_pio_0_avalon_slave_0_address    : std_logic_vector(1 downto 0);  -- mm_interconnect_0:pio_0_avalon_slave_0_address -> pio_0:address
-	signal mm_interconnect_0_pio_0_avalon_slave_0_read       : std_logic;                     -- mm_interconnect_0:pio_0_avalon_slave_0_read -> pio_0:read
-	signal mm_interconnect_0_pio_0_avalon_slave_0_write      : std_logic;                     -- mm_interconnect_0:pio_0_avalon_slave_0_write -> pio_0:write
-	signal mm_interconnect_0_pio_0_avalon_slave_0_writedata  : std_logic_vector(31 downto 0); -- mm_interconnect_0:pio_0_avalon_slave_0_writedata -> pio_0:writedata
-	signal mm_interconnect_0_pio_1_avalon_slave_0_chipselect : std_logic;                     -- mm_interconnect_0:pio_1_avalon_slave_0_chipselect -> pio_1:chipselect
-	signal mm_interconnect_0_pio_1_avalon_slave_0_readdata   : std_logic_vector(31 downto 0); -- pio_1:readdata -> mm_interconnect_0:pio_1_avalon_slave_0_readdata
-	signal mm_interconnect_0_pio_1_avalon_slave_0_address    : std_logic_vector(1 downto 0);  -- mm_interconnect_0:pio_1_avalon_slave_0_address -> pio_1:address
-	signal mm_interconnect_0_pio_1_avalon_slave_0_read       : std_logic;                     -- mm_interconnect_0:pio_1_avalon_slave_0_read -> pio_1:read
-	signal mm_interconnect_0_pio_1_avalon_slave_0_write      : std_logic;                     -- mm_interconnect_0:pio_1_avalon_slave_0_write -> pio_1:write
-	signal mm_interconnect_0_pio_1_avalon_slave_0_writedata  : std_logic_vector(31 downto 0); -- mm_interconnect_0:pio_1_avalon_slave_0_writedata -> pio_1:writedata
+	signal mm_interconnect_0_pio_0_avalon_slave_0_chipselect : std_logic;                     -- mm_interconnect_0:pio_0_avalon_slave_0_chipselect -> pio_0:iCHIPSELECT
+	signal mm_interconnect_0_pio_0_avalon_slave_0_readdata   : std_logic_vector(31 downto 0); -- pio_0:iREADDATA -> mm_interconnect_0:pio_0_avalon_slave_0_readdata
+	signal mm_interconnect_0_pio_0_avalon_slave_0_address    : std_logic_vector(1 downto 0);  -- mm_interconnect_0:pio_0_avalon_slave_0_address -> pio_0:iADDRESS
+	signal mm_interconnect_0_pio_0_avalon_slave_0_read       : std_logic;                     -- mm_interconnect_0:pio_0_avalon_slave_0_read -> pio_0:iREAD
+	signal mm_interconnect_0_pio_0_avalon_slave_0_write      : std_logic;                     -- mm_interconnect_0:pio_0_avalon_slave_0_write -> pio_0:iWRITE
+	signal mm_interconnect_0_pio_0_avalon_slave_0_writedata  : std_logic_vector(31 downto 0); -- mm_interconnect_0:pio_0_avalon_slave_0_writedata -> pio_0:iWRITEDATA
+	signal mm_interconnect_0_pio_1_avalon_slave_0_chipselect : std_logic;                     -- mm_interconnect_0:pio_1_avalon_slave_0_chipselect -> pio_1:iCHIPSELECT
+	signal mm_interconnect_0_pio_1_avalon_slave_0_readdata   : std_logic_vector(31 downto 0); -- pio_1:iREADDATA -> mm_interconnect_0:pio_1_avalon_slave_0_readdata
+	signal mm_interconnect_0_pio_1_avalon_slave_0_address    : std_logic_vector(1 downto 0);  -- mm_interconnect_0:pio_1_avalon_slave_0_address -> pio_1:iADDRESS
+	signal mm_interconnect_0_pio_1_avalon_slave_0_read       : std_logic;                     -- mm_interconnect_0:pio_1_avalon_slave_0_read -> pio_1:iREAD
+	signal mm_interconnect_0_pio_1_avalon_slave_0_write      : std_logic;                     -- mm_interconnect_0:pio_1_avalon_slave_0_write -> pio_1:iWRITE
+	signal mm_interconnect_0_pio_1_avalon_slave_0_writedata  : std_logic_vector(31 downto 0); -- mm_interconnect_0:pio_1_avalon_slave_0_writedata -> pio_1:iWRITEDATA
 	signal rst_controller_reset_out_reset                    : std_logic;                     -- rst_controller:reset_out -> [AvalonSimpleMaster_0_reset_reset, AvalonSimpleMaster_0_reset_reset:in, mm_interconnect_0:AvalonSimpleMaster_0_reset_reset_bridge_in_reset_reset]
 	signal reset_reset_n_ports_inv                           : std_logic;                     -- reset_reset_n:inv -> rst_controller:reset_in0
-	signal avalonsimplemaster_0_reset_reset_ports_inv        : std_logic;                     -- AvalonSimpleMaster_0_reset_reset:inv -> [pio_0:reset_n, pio_1:reset_n]
+	signal avalonsimplemaster_0_reset_reset_ports_inv        : std_logic;                     -- AvalonSimpleMaster_0_reset_reset:inv -> [pio_0:RST_L, pio_1:RST_L]
 
 begin
 
 	pio_0 : component prj_sim_pio_0
 		generic map (
-			DATA_WIDTH    => 8,
-			PIO_DIRECTION => "OUTPUT"
+			wDATA_WIDTH => 8
 		)
 		port map (
-			clk          => clk_clk,                                           --          clock.clk
-			reset_n      => avalonsimplemaster_0_reset_reset_ports_inv,        --          reset.reset_n
-			address      => mm_interconnect_0_pio_0_avalon_slave_0_address,    -- avalon_slave_0.address
-			read         => mm_interconnect_0_pio_0_avalon_slave_0_read,       --               .read
-			readdata     => mm_interconnect_0_pio_0_avalon_slave_0_readdata,   --               .readdata
-			write        => mm_interconnect_0_pio_0_avalon_slave_0_write,      --               .write
-			writedata    => mm_interconnect_0_pio_0_avalon_slave_0_writedata,  --               .writedata
-			chipselect   => mm_interconnect_0_pio_0_avalon_slave_0_chipselect, --               .chipselect
-			pio_external => pio_0_conduit_end_export                           --    conduit_end.export
+			CLK          => clk_clk,                                           --          clock.clk
+			RST_L        => avalonsimplemaster_0_reset_reset_ports_inv,        --          reset.reset_n
+			iADDRESS     => mm_interconnect_0_pio_0_avalon_slave_0_address,    -- avalon_slave_0.address
+			iREAD        => mm_interconnect_0_pio_0_avalon_slave_0_read,       --               .read
+			iREADDATA    => mm_interconnect_0_pio_0_avalon_slave_0_readdata,   --               .readdata
+			iWRITE       => mm_interconnect_0_pio_0_avalon_slave_0_write,      --               .write
+			iWRITEDATA   => mm_interconnect_0_pio_0_avalon_slave_0_writedata,  --               .writedata
+			iCHIPSELECT  => mm_interconnect_0_pio_0_avalon_slave_0_chipselect, --               .chipselect
+			PIO_EXTERNAL => pio_0_conduit_end_export                           --    conduit_end.export
 		);
 
 	pio_1 : component prj_sim_pio_1
 		generic map (
-			DATA_WIDTH    => 1,
-			PIO_DIRECTION => "INPUT"
+			wDATA_WIDTH => 1
 		)
 		port map (
-			clk          => clk_clk,                                           --          clock.clk
-			reset_n      => avalonsimplemaster_0_reset_reset_ports_inv,        --          reset.reset_n
-			address      => mm_interconnect_0_pio_1_avalon_slave_0_address,    -- avalon_slave_0.address
-			read         => mm_interconnect_0_pio_1_avalon_slave_0_read,       --               .read
-			readdata     => mm_interconnect_0_pio_1_avalon_slave_0_readdata,   --               .readdata
-			write        => mm_interconnect_0_pio_1_avalon_slave_0_write,      --               .write
-			writedata    => mm_interconnect_0_pio_1_avalon_slave_0_writedata,  --               .writedata
-			chipselect   => mm_interconnect_0_pio_1_avalon_slave_0_chipselect, --               .chipselect
-			pio_external => pio_1_conduit_end_export                           --    conduit_end.export
+			CLK          => clk_clk,                                           --          clock.clk
+			RST_L        => avalonsimplemaster_0_reset_reset_ports_inv,        --          reset.reset_n
+			iADDRESS     => mm_interconnect_0_pio_1_avalon_slave_0_address,    -- avalon_slave_0.address
+			iREAD        => mm_interconnect_0_pio_1_avalon_slave_0_read,       --               .read
+			iREADDATA    => mm_interconnect_0_pio_1_avalon_slave_0_readdata,   --               .readdata
+			iWRITE       => mm_interconnect_0_pio_1_avalon_slave_0_write,      --               .write
+			iWRITEDATA   => mm_interconnect_0_pio_1_avalon_slave_0_writedata,  --               .writedata
+			iCHIPSELECT  => mm_interconnect_0_pio_1_avalon_slave_0_chipselect, --               .chipselect
+			PIO_EXTERNAL => pio_1_conduit_end_export                           --    conduit_end.export
 		);
 
 	mm_interconnect_0 : component PRJ_SIM_mm_interconnect_0

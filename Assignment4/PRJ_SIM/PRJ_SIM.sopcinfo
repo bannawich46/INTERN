@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <EnsembleReport name="PRJ_SIM" kind="PRJ_SIM" version="1.0" fabric="QSYS">
  <!-- Format version 17.1 590 (Future versions may contain additional information.) -->
- <!-- 2024.06.19.20:33:24 -->
+ <!-- 2024.06.26.17:17:21 -->
  <!-- A collection of modules and connections -->
  <parameter name="AUTO_GENERATION_ID">
   <type>java.lang.Integer</type>
-  <value>1718804004</value>
+  <value>1719397041</value>
   <derived>false</derived>
   <enabled>true</enabled>
   <visible>false</visible>
@@ -971,17 +971,9 @@ parameters are a RESULT of the module parameters. -->
  <module name="pio_0" kind="pio" version="1.0" path="pio_0">
   <!-- Describes a single module. Module parameters are
 the requested settings for a module instance. -->
-  <parameter name="DATA_WIDTH">
+  <parameter name="wDATA_WIDTH">
    <type>int</type>
    <value>8</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="PIO_DIRECTION">
-   <type>java.lang.String</type>
-   <value>OUTPUT</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -1042,7 +1034,7 @@ parameters are a RESULT of the module parameters. -->
    <type>clock</type>
    <isStart>false</isStart>
    <port>
-    <name>clk</name>
+    <name>CLK</name>
     <direction>Input</direction>
     <width>1</width>
     <role>clk</role>
@@ -1087,7 +1079,7 @@ parameters are a RESULT of the module parameters. -->
    <type>reset</type>
    <isStart>false</isStart>
    <port>
-    <name>reset_n</name>
+    <name>RST_L</name>
     <direction>Input</direction>
     <width>1</width>
     <role>reset_n</role>
@@ -1428,37 +1420,37 @@ parameters are a RESULT of the module parameters. -->
    <type>avalon</type>
    <isStart>false</isStart>
    <port>
-    <name>address</name>
+    <name>iADDRESS</name>
     <direction>Input</direction>
     <width>2</width>
     <role>address</role>
    </port>
    <port>
-    <name>read</name>
+    <name>iREAD</name>
     <direction>Input</direction>
     <width>1</width>
     <role>read</role>
    </port>
    <port>
-    <name>readdata</name>
+    <name>iREADDATA</name>
     <direction>Output</direction>
     <width>32</width>
     <role>readdata</role>
    </port>
    <port>
-    <name>write</name>
+    <name>iWRITE</name>
     <direction>Input</direction>
     <width>1</width>
     <role>write</role>
    </port>
    <port>
-    <name>writedata</name>
+    <name>iWRITEDATA</name>
     <direction>Input</direction>
     <width>32</width>
     <role>writedata</role>
    </port>
    <port>
-    <name>chipselect</name>
+    <name>iCHIPSELECT</name>
     <direction>Input</direction>
     <width>1</width>
     <role>chipselect</role>
@@ -1503,7 +1495,7 @@ parameters are a RESULT of the module parameters. -->
    <type>conduit</type>
    <isStart>false</isStart>
    <port>
-    <name>pio_external</name>
+    <name>PIO_EXTERNAL</name>
     <direction>Bidir</direction>
     <width>8</width>
     <role>export</role>
@@ -1513,17 +1505,9 @@ parameters are a RESULT of the module parameters. -->
  <module name="pio_1" kind="pio" version="1.0" path="pio_1">
   <!-- Describes a single module. Module parameters are
 the requested settings for a module instance. -->
-  <parameter name="DATA_WIDTH">
+  <parameter name="wDATA_WIDTH">
    <type>int</type>
    <value>1</value>
-   <derived>false</derived>
-   <enabled>true</enabled>
-   <visible>true</visible>
-   <valid>true</valid>
-  </parameter>
-  <parameter name="PIO_DIRECTION">
-   <type>java.lang.String</type>
-   <value>INPUT</value>
    <derived>false</derived>
    <enabled>true</enabled>
    <visible>true</visible>
@@ -1584,7 +1568,7 @@ parameters are a RESULT of the module parameters. -->
    <type>clock</type>
    <isStart>false</isStart>
    <port>
-    <name>clk</name>
+    <name>CLK</name>
     <direction>Input</direction>
     <width>1</width>
     <role>clk</role>
@@ -1629,7 +1613,7 @@ parameters are a RESULT of the module parameters. -->
    <type>reset</type>
    <isStart>false</isStart>
    <port>
-    <name>reset_n</name>
+    <name>RST_L</name>
     <direction>Input</direction>
     <width>1</width>
     <role>reset_n</role>
@@ -1970,37 +1954,37 @@ parameters are a RESULT of the module parameters. -->
    <type>avalon</type>
    <isStart>false</isStart>
    <port>
-    <name>address</name>
+    <name>iADDRESS</name>
     <direction>Input</direction>
     <width>2</width>
     <role>address</role>
    </port>
    <port>
-    <name>read</name>
+    <name>iREAD</name>
     <direction>Input</direction>
     <width>1</width>
     <role>read</role>
    </port>
    <port>
-    <name>readdata</name>
+    <name>iREADDATA</name>
     <direction>Output</direction>
     <width>32</width>
     <role>readdata</role>
    </port>
    <port>
-    <name>write</name>
+    <name>iWRITE</name>
     <direction>Input</direction>
     <width>1</width>
     <role>write</role>
    </port>
    <port>
-    <name>writedata</name>
+    <name>iWRITEDATA</name>
     <direction>Input</direction>
     <width>32</width>
     <role>writedata</role>
    </port>
    <port>
-    <name>chipselect</name>
+    <name>iCHIPSELECT</name>
     <direction>Input</direction>
     <width>1</width>
     <role>chipselect</role>
@@ -2045,7 +2029,7 @@ parameters are a RESULT of the module parameters. -->
    <type>conduit</type>
    <isStart>false</isStart>
    <port>
-    <name>pio_external</name>
+    <name>PIO_EXTERNAL</name>
     <direction>Bidir</direction>
     <width>1</width>
     <role>export</role>

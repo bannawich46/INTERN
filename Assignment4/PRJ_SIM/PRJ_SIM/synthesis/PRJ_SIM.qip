@@ -2,7 +2,7 @@ set_global_assignment -entity "PRJ_SIM" -library "PRJ_SIM" -name IP_TOOL_NAME "Q
 set_global_assignment -entity "PRJ_SIM" -library "PRJ_SIM" -name IP_TOOL_VERSION "17.1"
 set_global_assignment -entity "PRJ_SIM" -library "PRJ_SIM" -name IP_TOOL_ENV "Qsys"
 set_global_assignment -library "PRJ_SIM" -name SOPCINFO_FILE [file join $::quartus(qip_path) "../../PRJ_SIM.sopcinfo"]
-set_global_assignment -entity "PRJ_SIM" -library "PRJ_SIM" -name SLD_INFO "QSYS_NAME PRJ_SIM HAS_SOPCINFO 1 GENERATION_ID 1718804004"
+set_global_assignment -entity "PRJ_SIM" -library "PRJ_SIM" -name SLD_INFO "QSYS_NAME PRJ_SIM HAS_SOPCINFO 1 GENERATION_ID 1719397041"
 set_global_assignment -library "PRJ_SIM" -name MISC_FILE [file join $::quartus(qip_path) "../PRJ_SIM.cmp"]
 set_global_assignment -library "PRJ_SIM" -name SLD_FILE [file join $::quartus(qip_path) "PRJ_SIM.debuginfo"]
 set_global_assignment -entity "PRJ_SIM" -library "PRJ_SIM" -name IP_TARGETED_DEVICE_FAMILY "MAX 10"
@@ -15,7 +15,7 @@ set_global_assignment -entity "PRJ_SIM" -library "PRJ_SIM" -name IP_COMPONENT_DI
 set_global_assignment -entity "PRJ_SIM" -library "PRJ_SIM" -name IP_COMPONENT_REPORT_HIERARCHY "On"
 set_global_assignment -entity "PRJ_SIM" -library "PRJ_SIM" -name IP_COMPONENT_INTERNAL "Off"
 set_global_assignment -entity "PRJ_SIM" -library "PRJ_SIM" -name IP_COMPONENT_VERSION "MS4w"
-set_global_assignment -entity "PRJ_SIM" -library "PRJ_SIM" -name IP_COMPONENT_PARAMETER "QVVUT19HRU5FUkFUSU9OX0lE::MTcxODgwNDAwNA==::QXV0byBHRU5FUkFUSU9OX0lE"
+set_global_assignment -entity "PRJ_SIM" -library "PRJ_SIM" -name IP_COMPONENT_PARAMETER "QVVUT19HRU5FUkFUSU9OX0lE::MTcxOTM5NzA0MQ==::QXV0byBHRU5FUkFUSU9OX0lE"
 set_global_assignment -entity "PRJ_SIM" -library "PRJ_SIM" -name IP_COMPONENT_PARAMETER "QVVUT19ERVZJQ0VfRkFNSUxZ::TUFYIDEw::QXV0byBERVZJQ0VfRkFNSUxZ"
 set_global_assignment -entity "PRJ_SIM" -library "PRJ_SIM" -name IP_COMPONENT_PARAMETER "QVVUT19ERVZJQ0U=::MTBNNTBEQUY0ODRDNkdFUw==::QXV0byBERVZJQ0U="
 set_global_assignment -entity "PRJ_SIM" -library "PRJ_SIM" -name IP_COMPONENT_PARAMETER "QVVUT19ERVZJQ0VfU1BFRURHUkFERQ==::Ng==::QXV0byBERVZJQ0VfU1BFRURHUkFERQ=="
@@ -489,8 +489,7 @@ set_global_assignment -entity "GPIO_IP" -library "PRJ_SIM" -name IP_COMPONENT_IN
 set_global_assignment -entity "GPIO_IP" -library "PRJ_SIM" -name IP_COMPONENT_AUTHOR "YmFubmF3aWNo"
 set_global_assignment -entity "GPIO_IP" -library "PRJ_SIM" -name IP_COMPONENT_VERSION "MS4w"
 set_global_assignment -entity "GPIO_IP" -library "PRJ_SIM" -name IP_COMPONENT_DESCRIPTION "Q3VzdG9tIEdQSU8gSVA="
-set_global_assignment -entity "GPIO_IP" -library "PRJ_SIM" -name IP_COMPONENT_PARAMETER "REFUQV9XSURUSA==::OA==::REFUQV9XSURUSA=="
-set_global_assignment -entity "GPIO_IP" -library "PRJ_SIM" -name IP_COMPONENT_PARAMETER "UElPX0RJUkVDVElPTg==::T1VUUFVU::UElPX0RJUkVDVElPTg=="
+set_global_assignment -entity "GPIO_IP" -library "PRJ_SIM" -name IP_COMPONENT_PARAMETER "d0RBVEFfV0lEVEg=::OA==::d0RBVEFfV0lEVEg="
 
 set_global_assignment -library "PRJ_SIM" -name VHDL_FILE [file join $::quartus(qip_path) "PRJ_SIM.vhd"]
 set_global_assignment -library "PRJ_SIM" -name VHDL_FILE [file join $::quartus(qip_path) "prj_sim_pio_0.vhd"]

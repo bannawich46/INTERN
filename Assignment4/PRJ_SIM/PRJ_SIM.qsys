@@ -17,6 +17,22 @@
          type = "int";
       }
    }
+   element PRJ_SIM
+   {
+      datum _originalDeviceFamily
+      {
+         value = "MAX 10";
+         type = "String";
+      }
+   }
+   element PRJ_SIM
+   {
+      datum _originalDeviceFamily
+      {
+         value = "MAX 10";
+         type = "String";
+      }
+   }
    element clk_0
    {
       datum _sortIndex
@@ -112,12 +128,10 @@
   <parameter name="resetSynchronousEdges" value="NONE" />
  </module>
  <module name="pio_0" kind="pio" version="1.0" enabled="1">
-  <parameter name="DATA_WIDTH" value="8" />
-  <parameter name="PIO_DIRECTION" value="OUTPUT" />
+  <parameter name="wDATA_WIDTH" value="8" />
  </module>
  <module name="pio_1" kind="pio" version="1.0" enabled="1">
-  <parameter name="DATA_WIDTH" value="1" />
-  <parameter name="PIO_DIRECTION" value="INPUT" />
+  <parameter name="wDATA_WIDTH" value="1" />
  </module>
  <connection
    kind="avalon"
