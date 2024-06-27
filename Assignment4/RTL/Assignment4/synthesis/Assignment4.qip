@@ -2,7 +2,7 @@ set_global_assignment -entity "Assignment4" -library "Assignment4" -name IP_TOOL
 set_global_assignment -entity "Assignment4" -library "Assignment4" -name IP_TOOL_VERSION "17.1"
 set_global_assignment -entity "Assignment4" -library "Assignment4" -name IP_TOOL_ENV "Qsys"
 set_global_assignment -library "Assignment4" -name SOPCINFO_FILE [file join $::quartus(qip_path) "../../Assignment4.sopcinfo"]
-set_global_assignment -entity "Assignment4" -library "Assignment4" -name SLD_INFO "QSYS_NAME Assignment4 HAS_SOPCINFO 1 GENERATION_ID 1719399437"
+set_global_assignment -entity "Assignment4" -library "Assignment4" -name SLD_INFO "QSYS_NAME Assignment4 HAS_SOPCINFO 1 GENERATION_ID 1719418544"
 set_global_assignment -library "Assignment4" -name MISC_FILE [file join $::quartus(qip_path) "../Assignment4.cmp"]
 set_global_assignment -library "Assignment4" -name SLD_FILE [file join $::quartus(qip_path) "Assignment4.regmap"]
 set_global_assignment -library "Assignment4" -name SLD_FILE [file join $::quartus(qip_path) "Assignment4.debuginfo"]
@@ -16,7 +16,7 @@ set_global_assignment -entity "Assignment4" -library "Assignment4" -name IP_COMP
 set_global_assignment -entity "Assignment4" -library "Assignment4" -name IP_COMPONENT_REPORT_HIERARCHY "On"
 set_global_assignment -entity "Assignment4" -library "Assignment4" -name IP_COMPONENT_INTERNAL "Off"
 set_global_assignment -entity "Assignment4" -library "Assignment4" -name IP_COMPONENT_VERSION "MS4w"
-set_global_assignment -entity "Assignment4" -library "Assignment4" -name IP_COMPONENT_PARAMETER "QVVUT19HRU5FUkFUSU9OX0lE::MTcxOTM5OTQzNw==::QXV0byBHRU5FUkFUSU9OX0lE"
+set_global_assignment -entity "Assignment4" -library "Assignment4" -name IP_COMPONENT_PARAMETER "QVVUT19HRU5FUkFUSU9OX0lE::MTcxOTQxODU0NA==::QXV0byBHRU5FUkFUSU9OX0lE"
 set_global_assignment -entity "Assignment4" -library "Assignment4" -name IP_COMPONENT_PARAMETER "QVVUT19ERVZJQ0VfRkFNSUxZ::TUFYIDEw::QXV0byBERVZJQ0VfRkFNSUxZ"
 set_global_assignment -entity "Assignment4" -library "Assignment4" -name IP_COMPONENT_PARAMETER "QVVUT19ERVZJQ0U=::MTBNNTBEQUY0ODRDNkdFUw==::QXV0byBERVZJQ0U="
 set_global_assignment -entity "Assignment4" -library "Assignment4" -name IP_COMPONENT_PARAMETER "QVVUT19ERVZJQ0VfU1BFRURHUkFERQ==::Ng==::QXV0byBERVZJQ0VfU1BFRURHUkFERQ=="
