@@ -28,12 +28,12 @@ module PRJ_SIM_pio_0 (
                         writedata,
 
                        // outputs:
-                        out_port,
+                        bidir_port,
                         readdata
                      )
 ;
 
-  output  [  7: 0] out_port;
+  inout   [  8: 0] bidir_port;
   output  [ 31: 0] readdata;
   input   [  1: 0] address;
   input            chipselect;
@@ -43,25 +43,55 @@ module PRJ_SIM_pio_0 (
   input   [ 31: 0] writedata;
 
 
+wire    [  8: 0] bidir_port;
 wire             clk_en;
-reg     [  7: 0] data_out;
-wire    [  7: 0] out_port;
-wire    [  7: 0] read_mux_out;
-wire    [ 31: 0] readdata;
+reg     [  8: 0] data_dir;
+wire    [  8: 0] data_in;
+reg     [  8: 0] data_out;
+wire    [  8: 0] read_mux_out;
+reg     [ 31: 0] readdata;
   assign clk_en = 1;
   //s1, which is an e_avalon_slave
-  assign read_mux_out = {8 {(address == 0)}} & data_out;
+  assign read_mux_out = ({9 {(address == 0)}} & data_in) |
+    ({9 {(address == 1)}} & data_dir);
+
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          readdata <= 0;
+      else if (clk_en)
+          readdata <= {32'b0 | read_mux_out};
+    end
+
+
   always @(posedge clk or negedge reset_n)
     begin
       if (reset_n == 0)
           data_out <= 0;
       else if (chipselect && ~write_n && (address == 0))
-          data_out <= writedata[7 : 0];
+          data_out <= writedata[8 : 0];
     end
 
 
-  assign readdata = {32'b0 | read_mux_out};
-  assign out_port = data_out;
+  assign bidir_port[0] = data_dir[0] ? data_out[0] : 1'bZ;
+  assign bidir_port[1] = data_dir[1] ? data_out[1] : 1'bZ;
+  assign bidir_port[2] = data_dir[2] ? data_out[2] : 1'bZ;
+  assign bidir_port[3] = data_dir[3] ? data_out[3] : 1'bZ;
+  assign bidir_port[4] = data_dir[4] ? data_out[4] : 1'bZ;
+  assign bidir_port[5] = data_dir[5] ? data_out[5] : 1'bZ;
+  assign bidir_port[6] = data_dir[6] ? data_out[6] : 1'bZ;
+  assign bidir_port[7] = data_dir[7] ? data_out[7] : 1'bZ;
+  assign bidir_port[8] = data_dir[8] ? data_out[8] : 1'bZ;
+  assign data_in = bidir_port;
+  always @(posedge clk or negedge reset_n)
+    begin
+      if (reset_n == 0)
+          data_dir <= 0;
+      else if (chipselect && ~write_n && (address == 1))
+          data_dir <= writedata[8 : 0];
+    end
+
+
 
 endmodule
 

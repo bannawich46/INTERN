@@ -12,7 +12,7 @@
 # or its authorized distributors. Please refer to the applicable 
 # agreement for further details.
 
-# ACDS 17.1 590 win32 2024.06.26.17:17:19
+# ACDS 17.1 590 win32 2024.06.28.18:45:42
 # ----------------------------------------
 # Auto-generated simulation script rivierapro_setup.tcl
 # ----------------------------------------
@@ -184,28 +184,6 @@ ensure_lib                  ./libraries/altera_lnsim
 vmap       altera_lnsim     ./libraries/altera_lnsim    
 ensure_lib                  ./libraries/fiftyfivenm     
 vmap       fiftyfivenm      ./libraries/fiftyfivenm     
-ensure_lib                                        ./libraries/error_adapter_0                       
-vmap       error_adapter_0                        ./libraries/error_adapter_0                       
-ensure_lib                                        ./libraries/avalon_st_adapter                     
-vmap       avalon_st_adapter                      ./libraries/avalon_st_adapter                     
-ensure_lib                                        ./libraries/rsp_mux                               
-vmap       rsp_mux                                ./libraries/rsp_mux                               
-ensure_lib                                        ./libraries/rsp_demux                             
-vmap       rsp_demux                              ./libraries/rsp_demux                             
-ensure_lib                                        ./libraries/cmd_mux                               
-vmap       cmd_mux                                ./libraries/cmd_mux                               
-ensure_lib                                        ./libraries/cmd_demux                             
-vmap       cmd_demux                              ./libraries/cmd_demux                             
-ensure_lib                                        ./libraries/router_001                            
-vmap       router_001                             ./libraries/router_001                            
-ensure_lib                                        ./libraries/router                                
-vmap       router                                 ./libraries/router                                
-ensure_lib                                        ./libraries/pio_0_avalon_slave_0_agent_rsp_fifo   
-vmap       pio_0_avalon_slave_0_agent_rsp_fifo    ./libraries/pio_0_avalon_slave_0_agent_rsp_fifo   
-ensure_lib                                        ./libraries/pio_0_avalon_slave_0_agent            
-vmap       pio_0_avalon_slave_0_agent             ./libraries/pio_0_avalon_slave_0_agent            
-ensure_lib                                        ./libraries/AvalonSimpleMaster_0_avm_m0_agent     
-vmap       AvalonSimpleMaster_0_avm_m0_agent      ./libraries/AvalonSimpleMaster_0_avm_m0_agent     
 ensure_lib                                        ./libraries/pio_0_avalon_slave_0_translator       
 vmap       pio_0_avalon_slave_0_translator        ./libraries/pio_0_avalon_slave_0_translator       
 ensure_lib                                        ./libraries/AvalonSimpleMaster_0_avm_m0_translator
@@ -251,43 +229,27 @@ alias dev_com {
 # Compile the design files in correct order
 alias com {
   echo "\[exec\] com"
-  eval  vlog  $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS      "$QSYS_SIMDIR/submodules/PRJ_SIM_mm_interconnect_0_avalon_st_adapter_error_adapter_0.sv" -work error_adapter_0                       
-  eval  vcom $USER_DEFINED_VHDL_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS          "$QSYS_SIMDIR/submodules/PRJ_SIM_mm_interconnect_0_avalon_st_adapter.vhd"                -work avalon_st_adapter                     
-  eval  vlog  $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS      "$QSYS_SIMDIR/submodules/PRJ_SIM_mm_interconnect_0_rsp_mux.sv"                           -work rsp_mux                               
-  eval  vlog  $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS      "$QSYS_SIMDIR/submodules/altera_merlin_arbitrator.sv"                                    -work rsp_mux                               
-  eval  vlog  $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS      "$QSYS_SIMDIR/submodules/PRJ_SIM_mm_interconnect_0_rsp_demux.sv"                         -work rsp_demux                             
-  eval  vlog  $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS      "$QSYS_SIMDIR/submodules/PRJ_SIM_mm_interconnect_0_cmd_mux.sv"                           -work cmd_mux                               
-  eval  vlog  $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS      "$QSYS_SIMDIR/submodules/altera_merlin_arbitrator.sv"                                    -work cmd_mux                               
-  eval  vlog  $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS      "$QSYS_SIMDIR/submodules/PRJ_SIM_mm_interconnect_0_cmd_demux.sv"                         -work cmd_demux                             
-  eval  vlog  $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS      "$QSYS_SIMDIR/submodules/PRJ_SIM_mm_interconnect_0_router_001.sv"                        -work router_001                            
-  eval  vlog  $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS      "$QSYS_SIMDIR/submodules/PRJ_SIM_mm_interconnect_0_router.sv"                            -work router                                
-  eval  vlog -v2k5 $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/submodules/altera_avalon_sc_fifo.v"                                        -work pio_0_avalon_slave_0_agent_rsp_fifo   
-  eval  vlog  $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS      "$QSYS_SIMDIR/submodules/altera_merlin_slave_agent.sv"                                   -work pio_0_avalon_slave_0_agent            
-  eval  vlog  $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS      "$QSYS_SIMDIR/submodules/altera_merlin_burst_uncompressor.sv"                            -work pio_0_avalon_slave_0_agent            
-  eval  vlog  $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS      "$QSYS_SIMDIR/submodules/altera_merlin_master_agent.sv"                                  -work AvalonSimpleMaster_0_avm_m0_agent     
-  eval  vlog  $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS      "$QSYS_SIMDIR/submodules/altera_merlin_slave_translator.sv"                              -work pio_0_avalon_slave_0_translator       
-  eval  vlog  $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS      "$QSYS_SIMDIR/submodules/altera_merlin_master_translator.sv"                             -work AvalonSimpleMaster_0_avm_m0_translator
-  eval  vlog -v2k5 $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/submodules/altera_reset_controller.v"                                      -work rst_controller                        
-  eval  vlog -v2k5 $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/submodules/altera_reset_synchronizer.v"                                    -work rst_controller                        
-  eval  vlog -v2k5 $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/submodules/PRJ_SIM_mm_interconnect_0.v"                                    -work mm_interconnect_0                     
-  eval  vcom $USER_DEFINED_VHDL_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS          "$QSYS_SIMDIR/submodules/GPIO_IP.vhd"                                                    -work pio_0                                 
-  eval  vcom $USER_DEFINED_VHDL_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS          "$QSYS_SIMDIR/PRJ_SIM.vhd"                                                                                                           
-  eval  vcom $USER_DEFINED_VHDL_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS          "$QSYS_SIMDIR/prj_sim_pio_0.vhd"                                                                                                     
-  eval  vcom $USER_DEFINED_VHDL_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS          "$QSYS_SIMDIR/prj_sim_pio_1.vhd"                                                                                                     
+  eval  vlog  $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS      "$QSYS_SIMDIR/submodules/altera_merlin_slave_translator.sv"  -work pio_0_avalon_slave_0_translator       
+  eval  vlog  $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS      "$QSYS_SIMDIR/submodules/altera_merlin_master_translator.sv" -work AvalonSimpleMaster_0_avm_m0_translator
+  eval  vlog -v2k5 $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/submodules/altera_reset_controller.v"          -work rst_controller                        
+  eval  vlog -v2k5 $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/submodules/altera_reset_synchronizer.v"        -work rst_controller                        
+  eval  vlog -v2k5 $USER_DEFINED_VERILOG_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS "$QSYS_SIMDIR/submodules/PRJ_SIM_mm_interconnect_0.v"        -work mm_interconnect_0                     
+  eval  vcom $USER_DEFINED_VHDL_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS          "$QSYS_SIMDIR/submodules/GPIO_IP.vhd"                        -work pio_0                                 
+  eval  vcom $USER_DEFINED_VHDL_COMPILE_OPTIONS $USER_DEFINED_COMPILE_OPTIONS          "$QSYS_SIMDIR/PRJ_SIM.vhd"                                                                               
 }
 
 # ----------------------------------------
 # Elaborate top level design
 alias elab {
   echo "\[exec\] elab"
-  eval vsim +access +r -t ps $ELAB_OPTIONS -L work -L error_adapter_0 -L avalon_st_adapter -L rsp_mux -L rsp_demux -L cmd_mux -L cmd_demux -L router_001 -L router -L pio_0_avalon_slave_0_agent_rsp_fifo -L pio_0_avalon_slave_0_agent -L AvalonSimpleMaster_0_avm_m0_agent -L pio_0_avalon_slave_0_translator -L AvalonSimpleMaster_0_avm_m0_translator -L rst_controller -L mm_interconnect_0 -L pio_0 -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L fiftyfivenm_ver -L altera -L lpm -L sgate -L altera_mf -L altera_lnsim -L fiftyfivenm $TOP_LEVEL_NAME
+  eval vsim +access +r -t ps $ELAB_OPTIONS -L work -L pio_0_avalon_slave_0_translator -L AvalonSimpleMaster_0_avm_m0_translator -L rst_controller -L mm_interconnect_0 -L pio_0 -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L fiftyfivenm_ver -L altera -L lpm -L sgate -L altera_mf -L altera_lnsim -L fiftyfivenm $TOP_LEVEL_NAME
 }
 
 # ----------------------------------------
 # Elaborate the top level design with -dbg -O2 option
 alias elab_debug {
   echo "\[exec\] elab_debug"
-  eval vsim -dbg -O2 +access +r -t ps $ELAB_OPTIONS -L work -L error_adapter_0 -L avalon_st_adapter -L rsp_mux -L rsp_demux -L cmd_mux -L cmd_demux -L router_001 -L router -L pio_0_avalon_slave_0_agent_rsp_fifo -L pio_0_avalon_slave_0_agent -L AvalonSimpleMaster_0_avm_m0_agent -L pio_0_avalon_slave_0_translator -L AvalonSimpleMaster_0_avm_m0_translator -L rst_controller -L mm_interconnect_0 -L pio_0 -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L fiftyfivenm_ver -L altera -L lpm -L sgate -L altera_mf -L altera_lnsim -L fiftyfivenm $TOP_LEVEL_NAME
+  eval vsim -dbg -O2 +access +r -t ps $ELAB_OPTIONS -L work -L pio_0_avalon_slave_0_translator -L AvalonSimpleMaster_0_avm_m0_translator -L rst_controller -L mm_interconnect_0 -L pio_0 -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L fiftyfivenm_ver -L altera -L lpm -L sgate -L altera_mf -L altera_lnsim -L fiftyfivenm $TOP_LEVEL_NAME
 }
 
 # ----------------------------------------

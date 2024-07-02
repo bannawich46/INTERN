@@ -30,13 +30,13 @@ Architecture RTL Of GPIO_IP Is
 Begin
 	Process(CLK, RST_L)
 	Begin
-		if RST_L = '0' then
+		if (RST_L = '0') then
 			wDATA <= (others => '0');
 			wDIR <= (others => '1');
 			wREADDATA <= (others => '0');
 		elsif rising_edge(CLK) then
-			if iCHIPSELECT = '1' then  -- Check chip select
-				if iWRITE = '1' then
+			if (iCHIPSELECT = '1') then  -- Check chip select
+				if (iWRITE = '1') then
 					case iADDRESS is
 						when "00" =>
 							wDATA <= iWRITEDATA(wDATA_WIDTH-1 downto 0);
@@ -46,11 +46,11 @@ Begin
 							null;
 					end case;
 				end if;
-				if iREAD = '1' then
+				if (iREAD = '1') then
 					case iADDRESS is
 						when "00" =>
 							wREADDATA(31 downto wDATA_WIDTH) <= (others => '0');
-							wREADDATA(wDATA_WIDTH-1 downto 0) <= wDATA;
+							wREADDATA(wDATA_WIDTH-1 downto 0) <= wGPIO_IN;
 						when "01" =>
 							wREADDATA(31 downto wDATA_WIDTH) <= (others => '0');
 							wREADDATA(wDATA_WIDTH-1 downto 0) <= wDIR;
@@ -65,25 +65,30 @@ Begin
 	iREADDATA <= wREADDATA;
 
 	-- Bidirectional GPIO pins
-	Process (wDIR, wDATA, PIO_EXTERNAL)
+	Process (CLK, RST_L)
 	Begin
-		for i in 0 to wDATA_WIDTH-1 loop
-			if wDIR(i) = '1' then
-				wGPIO_OUT(i) <= wDATA(i);
-				wGPIO_EN(i) <= '1';
-				wGPIO_IN(i) <= '0';
-			else
-				wGPIO_OUT(i) <= '0';
-				wGPIO_EN(i) <= '0';
-				wGPIO_IN(i) <= PIO_EXTERNAL(i);
-			end if;
-		end loop;
+		if (RST_L = '0') then
+			wGPIO_IN <= (others => '0');
+			wGPIO_OUT <= (others => '0');
+			wGPIO_EN <= (others => '1');
+		elsif (rising_edge(CLK)) then
+			for i in 0 to wDATA_WIDTH-1 loop
+				if (wDIR(i) = '1') then
+					wGPIO_OUT(i) <= wDATA(i);
+					wGPIO_EN(i) <= '1';
+					wGPIO_IN(i) <= '0';
+				else
+					wGPIO_OUT(i) <= '0';
+					wGPIO_EN(i) <= '0';
+					wGPIO_IN(i) <= PIO_EXTERNAL(i);
+				end if;
+			end loop;
+		end if;
 	End process;
 
 	-- Tri-state buffer for GPIO pins
-	gen_gpio: for i in 0 to wDATA_WIDTH-1 generate
+	GEN_GPIO : for i in 0 to wDATA_WIDTH-1 generate
 		PIO_EXTERNAL(i) <= wGPIO_OUT(i) when wGPIO_EN(i) = '1' else 'Z';
-		wDATA(i) <= wGPIO_IN(i) when wGPIO_EN(i) = '0' else 'Z';
-	end generate;
+	End generate;
 	
 End Architecture RTL;

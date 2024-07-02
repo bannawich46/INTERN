@@ -9,8 +9,7 @@ module PRJ_SIM (
 	AvalonSimpleMaster_0_reset_reset,
 	clk_clk,
 	reset_reset_n,
-	pio_0_conduit_end_export,
-	pio_1_conduit_end_export);	
+	pio_0_conduit_end_export);	
 
 	input	[7:0]	AvalonSimpleMaster_0_avm_m0_address;
 	input		AvalonSimpleMaster_0_avm_m0_read;
@@ -21,6 +20,5 @@ module PRJ_SIM (
 	output		AvalonSimpleMaster_0_reset_reset;
 	input		clk_clk;
 	input		reset_reset_n;
-	inout	[7:0]	pio_0_conduit_end_export;
-	inout	[0:0]	pio_1_conduit_end_export;
+	inout	[8:0]	pio_0_conduit_end_export;
 endmodule

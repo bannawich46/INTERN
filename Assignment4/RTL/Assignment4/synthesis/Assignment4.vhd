@@ -9,8 +9,7 @@ use IEEE.numeric_std.all;
 entity Assignment4 is
 	port (
 		clk_clk                  : in    std_logic                    := '0';             --               clk.clk
-		pio_0_conduit_end_export : inout std_logic_vector(7 downto 0) := (others => '0'); -- pio_0_conduit_end.export
-		pio_1_conduit_end_export : inout std_logic_vector(0 downto 0) := (others => '0'); -- pio_1_conduit_end.export
+		pio_0_conduit_end_export : inout std_logic_vector(8 downto 0) := (others => '0'); -- pio_0_conduit_end.export
 		reset_reset_n            : in    std_logic                    := '0'              --             reset.reset_n
 	);
 end entity Assignment4;
@@ -99,6 +98,23 @@ architecture rtl of Assignment4 is
 		);
 	end component Assignment4_onchip_memory2_0;
 
+	component GPIO_IP is
+		generic (
+			wDATA_WIDTH : integer := 8
+		);
+		port (
+			CLK          : in    std_logic                     := 'X';             -- clk
+			RST_L        : in    std_logic                     := 'X';             -- reset_n
+			iADDRESS     : in    std_logic_vector(1 downto 0)  := (others => 'X'); -- address
+			iREAD        : in    std_logic                     := 'X';             -- read
+			iREADDATA    : out   std_logic_vector(31 downto 0);                    -- readdata
+			iWRITE       : in    std_logic                     := 'X';             -- write
+			iWRITEDATA   : in    std_logic_vector(31 downto 0) := (others => 'X'); -- writedata
+			iCHIPSELECT  : in    std_logic                     := 'X';             -- chipselect
+			PIO_EXTERNAL : inout std_logic_vector(8 downto 0)  := (others => 'X')  -- export
+		);
+	end component GPIO_IP;
+
 	component Assignment4_mm_interconnect_0 is
 		port (
 			clk_0_clk_clk                                                : in  std_logic                     := 'X';             -- clk
@@ -152,13 +168,7 @@ architecture rtl of Assignment4 is
 			pio_0_avalon_slave_0_read                                    : out std_logic;                                        -- read
 			pio_0_avalon_slave_0_readdata                                : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
 			pio_0_avalon_slave_0_writedata                               : out std_logic_vector(31 downto 0);                    -- writedata
-			pio_0_avalon_slave_0_chipselect                              : out std_logic;                                        -- chipselect
-			pio_1_avalon_slave_0_address                                 : out std_logic_vector(1 downto 0);                     -- address
-			pio_1_avalon_slave_0_write                                   : out std_logic;                                        -- write
-			pio_1_avalon_slave_0_read                                    : out std_logic;                                        -- read
-			pio_1_avalon_slave_0_readdata                                : in  std_logic_vector(31 downto 0) := (others => 'X'); -- readdata
-			pio_1_avalon_slave_0_writedata                               : out std_logic_vector(31 downto 0);                    -- writedata
-			pio_1_avalon_slave_0_chipselect                              : out std_logic                                         -- chipselect
+			pio_0_avalon_slave_0_chipselect                              : out std_logic                                         -- chipselect
 		);
 	end component Assignment4_mm_interconnect_0;
 
@@ -303,40 +313,6 @@ architecture rtl of Assignment4 is
 		);
 	end component assignment4_rst_controller_001;
 
-	component assignment4_pio_0 is
-		generic (
-			wDATA_WIDTH : integer := 8
-		);
-		port (
-			CLK          : in    std_logic                     := 'X';             --          clock.clk
-			RST_L        : in    std_logic                     := 'X';             --          reset.reset_n
-			iADDRESS     : in    std_logic_vector(1 downto 0)  := (others => 'X'); -- avalon_slave_0.address
-			iREAD        : in    std_logic                     := 'X';             --               .read
-			iREADDATA    : out   std_logic_vector(31 downto 0);                    --               .readdata
-			iWRITE       : in    std_logic                     := 'X';             --               .write
-			iWRITEDATA   : in    std_logic_vector(31 downto 0) := (others => 'X'); --               .writedata
-			iCHIPSELECT  : in    std_logic                     := 'X';             --               .chipselect
-			PIO_EXTERNAL : inout std_logic_vector(7 downto 0)  := (others => 'X')  --    conduit_end.export
-		);
-	end component assignment4_pio_0;
-
-	component assignment4_pio_1 is
-		generic (
-			wDATA_WIDTH : integer := 8
-		);
-		port (
-			CLK          : in    std_logic                     := 'X';             --          clock.clk
-			RST_L        : in    std_logic                     := 'X';             --          reset.reset_n
-			iADDRESS     : in    std_logic_vector(1 downto 0)  := (others => 'X'); -- avalon_slave_0.address
-			iREAD        : in    std_logic                     := 'X';             --               .read
-			iREADDATA    : out   std_logic_vector(31 downto 0);                    --               .readdata
-			iWRITE       : in    std_logic                     := 'X';             --               .write
-			iWRITEDATA   : in    std_logic_vector(31 downto 0) := (others => 'X'); --               .writedata
-			iCHIPSELECT  : in    std_logic                     := 'X';             --               .chipselect
-			PIO_EXTERNAL : inout std_logic_vector(0 downto 0)  := (others => 'X')  --    conduit_end.export
-		);
-	end component assignment4_pio_1;
-
 	signal nios2_gen2_0_data_master_readdata                               : std_logic_vector(31 downto 0); -- mm_interconnect_0:nios2_gen2_0_data_master_readdata -> nios2_gen2_0:d_readdata
 	signal nios2_gen2_0_data_master_waitrequest                            : std_logic;                     -- mm_interconnect_0:nios2_gen2_0_data_master_waitrequest -> nios2_gen2_0:d_waitrequest
 	signal nios2_gen2_0_data_master_debugaccess                            : std_logic;                     -- nios2_gen2_0:debug_mem_slave_debugaccess_to_roms -> mm_interconnect_0:nios2_gen2_0_data_master_debugaccess
@@ -370,12 +346,6 @@ architecture rtl of Assignment4 is
 	signal mm_interconnect_0_pio_0_avalon_slave_0_read                     : std_logic;                     -- mm_interconnect_0:pio_0_avalon_slave_0_read -> pio_0:iREAD
 	signal mm_interconnect_0_pio_0_avalon_slave_0_write                    : std_logic;                     -- mm_interconnect_0:pio_0_avalon_slave_0_write -> pio_0:iWRITE
 	signal mm_interconnect_0_pio_0_avalon_slave_0_writedata                : std_logic_vector(31 downto 0); -- mm_interconnect_0:pio_0_avalon_slave_0_writedata -> pio_0:iWRITEDATA
-	signal mm_interconnect_0_pio_1_avalon_slave_0_chipselect               : std_logic;                     -- mm_interconnect_0:pio_1_avalon_slave_0_chipselect -> pio_1:iCHIPSELECT
-	signal mm_interconnect_0_pio_1_avalon_slave_0_readdata                 : std_logic_vector(31 downto 0); -- pio_1:iREADDATA -> mm_interconnect_0:pio_1_avalon_slave_0_readdata
-	signal mm_interconnect_0_pio_1_avalon_slave_0_address                  : std_logic_vector(1 downto 0);  -- mm_interconnect_0:pio_1_avalon_slave_0_address -> pio_1:iADDRESS
-	signal mm_interconnect_0_pio_1_avalon_slave_0_read                     : std_logic;                     -- mm_interconnect_0:pio_1_avalon_slave_0_read -> pio_1:iREAD
-	signal mm_interconnect_0_pio_1_avalon_slave_0_write                    : std_logic;                     -- mm_interconnect_0:pio_1_avalon_slave_0_write -> pio_1:iWRITE
-	signal mm_interconnect_0_pio_1_avalon_slave_0_writedata                : std_logic_vector(31 downto 0); -- mm_interconnect_0:pio_1_avalon_slave_0_writedata -> pio_1:iWRITEDATA
 	signal mm_interconnect_0_nios2_gen2_0_debug_mem_slave_readdata         : std_logic_vector(31 downto 0); -- nios2_gen2_0:debug_mem_slave_readdata -> mm_interconnect_0:nios2_gen2_0_debug_mem_slave_readdata
 	signal mm_interconnect_0_nios2_gen2_0_debug_mem_slave_waitrequest      : std_logic;                     -- nios2_gen2_0:debug_mem_slave_waitrequest -> mm_interconnect_0:nios2_gen2_0_debug_mem_slave_waitrequest
 	signal mm_interconnect_0_nios2_gen2_0_debug_mem_slave_debugaccess      : std_logic;                     -- mm_interconnect_0:nios2_gen2_0_debug_mem_slave_debugaccess -> nios2_gen2_0:debug_mem_slave_debugaccess
@@ -402,7 +372,7 @@ architecture rtl of Assignment4 is
 	signal reset_reset_n_ports_inv                                         : std_logic;                     -- reset_reset_n:inv -> [rst_controller:reset_in0, rst_controller_001:reset_in0, rst_controller_002:reset_in0]
 	signal mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_read_ports_inv  : std_logic;                     -- mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_read:inv -> jtag_uart_0:av_read_n
 	signal mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_write_ports_inv : std_logic;                     -- mm_interconnect_0_jtag_uart_0_avalon_jtag_slave_write:inv -> jtag_uart_0:av_write_n
-	signal rst_controller_reset_out_reset_ports_inv                        : std_logic;                     -- rst_controller_reset_out_reset:inv -> [jtag_uart_0:rst_n, nios2_gen2_0:reset_n, pio_0:RST_L, pio_1:RST_L]
+	signal rst_controller_reset_out_reset_ports_inv                        : std_logic;                     -- rst_controller_reset_out_reset:inv -> [jtag_uart_0:rst_n, nios2_gen2_0:reset_n, pio_0:RST_L]
 
 begin
 
@@ -485,9 +455,9 @@ begin
 			freeze     => '0'                                               -- (terminated)
 		);
 
-	pio_0 : component assignment4_pio_0
+	pio_0 : component GPIO_IP
 		generic map (
-			wDATA_WIDTH => 8
+			wDATA_WIDTH => 9
 		)
 		port map (
 			CLK          => clk_clk,                                           --          clock.clk
@@ -499,22 +469,6 @@ begin
 			iWRITEDATA   => mm_interconnect_0_pio_0_avalon_slave_0_writedata,  --               .writedata
 			iCHIPSELECT  => mm_interconnect_0_pio_0_avalon_slave_0_chipselect, --               .chipselect
 			PIO_EXTERNAL => pio_0_conduit_end_export                           --    conduit_end.export
-		);
-
-	pio_1 : component assignment4_pio_1
-		generic map (
-			wDATA_WIDTH => 1
-		)
-		port map (
-			CLK          => clk_clk,                                           --          clock.clk
-			RST_L        => rst_controller_reset_out_reset_ports_inv,          --          reset.reset_n
-			iADDRESS     => mm_interconnect_0_pio_1_avalon_slave_0_address,    -- avalon_slave_0.address
-			iREAD        => mm_interconnect_0_pio_1_avalon_slave_0_read,       --               .read
-			iREADDATA    => mm_interconnect_0_pio_1_avalon_slave_0_readdata,   --               .readdata
-			iWRITE       => mm_interconnect_0_pio_1_avalon_slave_0_write,      --               .write
-			iWRITEDATA   => mm_interconnect_0_pio_1_avalon_slave_0_writedata,  --               .writedata
-			iCHIPSELECT  => mm_interconnect_0_pio_1_avalon_slave_0_chipselect, --               .chipselect
-			PIO_EXTERNAL => pio_1_conduit_end_export                           --    conduit_end.export
 		);
 
 	mm_interconnect_0 : component Assignment4_mm_interconnect_0
@@ -570,13 +524,7 @@ begin
 			pio_0_avalon_slave_0_read                                    => mm_interconnect_0_pio_0_avalon_slave_0_read,                 --                                                       .read
 			pio_0_avalon_slave_0_readdata                                => mm_interconnect_0_pio_0_avalon_slave_0_readdata,             --                                                       .readdata
 			pio_0_avalon_slave_0_writedata                               => mm_interconnect_0_pio_0_avalon_slave_0_writedata,            --                                                       .writedata
-			pio_0_avalon_slave_0_chipselect                              => mm_interconnect_0_pio_0_avalon_slave_0_chipselect,           --                                                       .chipselect
-			pio_1_avalon_slave_0_address                                 => mm_interconnect_0_pio_1_avalon_slave_0_address,              --                                   pio_1_avalon_slave_0.address
-			pio_1_avalon_slave_0_write                                   => mm_interconnect_0_pio_1_avalon_slave_0_write,                --                                                       .write
-			pio_1_avalon_slave_0_read                                    => mm_interconnect_0_pio_1_avalon_slave_0_read,                 --                                                       .read
-			pio_1_avalon_slave_0_readdata                                => mm_interconnect_0_pio_1_avalon_slave_0_readdata,             --                                                       .readdata
-			pio_1_avalon_slave_0_writedata                               => mm_interconnect_0_pio_1_avalon_slave_0_writedata,            --                                                       .writedata
-			pio_1_avalon_slave_0_chipselect                              => mm_interconnect_0_pio_1_avalon_slave_0_chipselect            --                                                       .chipselect
+			pio_0_avalon_slave_0_chipselect                              => mm_interconnect_0_pio_0_avalon_slave_0_chipselect            --                                                       .chipselect
 		);
 
 	irq_mapper : component Assignment4_irq_mapper

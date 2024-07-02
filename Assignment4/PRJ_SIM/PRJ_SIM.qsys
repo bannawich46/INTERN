@@ -49,30 +49,6 @@
          type = "int";
       }
    }
-   element pio_0.avalon_slave_0
-   {
-      datum baseAddress
-      {
-         value = "16";
-         type = "String";
-      }
-   }
-   element pio_1
-   {
-      datum _sortIndex
-      {
-         value = "3";
-         type = "int";
-      }
-   }
-   element pio_1.avalon_slave_0
-   {
-      datum baseAddress
-      {
-         value = "0";
-         type = "String";
-      }
-   }
 }
 ]]></parameter>
  <parameter name="clockCrossingAdapter" value="HANDSHAKE" />
@@ -110,11 +86,6 @@
    internal="pio_0.conduit_end"
    type="conduit"
    dir="end" />
- <interface
-   name="pio_1_conduit_end"
-   internal="pio_1.conduit_end"
-   type="conduit"
-   dir="end" />
  <interface name="reset" internal="clk_0.clk_in_reset" type="reset" dir="end" />
  <module
    name="AvalonSimpleMaster_0"
@@ -128,25 +99,13 @@
   <parameter name="resetSynchronousEdges" value="NONE" />
  </module>
  <module name="pio_0" kind="pio" version="1.0" enabled="1">
-  <parameter name="wDATA_WIDTH" value="8" />
- </module>
- <module name="pio_1" kind="pio" version="1.0" enabled="1">
-  <parameter name="wDATA_WIDTH" value="1" />
+  <parameter name="wDATA_WIDTH" value="9" />
  </module>
  <connection
    kind="avalon"
    version="17.1"
    start="AvalonSimpleMaster_0.avm_m0"
    end="pio_0.avalon_slave_0">
-  <parameter name="arbitrationPriority" value="1" />
-  <parameter name="baseAddress" value="0x0010" />
-  <parameter name="defaultConnection" value="false" />
- </connection>
- <connection
-   kind="avalon"
-   version="17.1"
-   start="AvalonSimpleMaster_0.avm_m0"
-   end="pio_1.avalon_slave_0">
   <parameter name="arbitrationPriority" value="1" />
   <parameter name="baseAddress" value="0x0000" />
   <parameter name="defaultConnection" value="false" />
@@ -157,14 +116,12 @@
    start="clk_0.clk"
    end="AvalonSimpleMaster_0.clock" />
  <connection kind="clock" version="17.1" start="clk_0.clk" end="pio_0.clock" />
- <connection kind="clock" version="17.1" start="clk_0.clk" end="pio_1.clock" />
  <connection
    kind="reset"
    version="17.1"
    start="clk_0.clk_reset"
    end="AvalonSimpleMaster_0.reset" />
  <connection kind="reset" version="17.1" start="clk_0.clk_reset" end="pio_0.reset" />
- <connection kind="reset" version="17.1" start="clk_0.clk_reset" end="pio_1.reset" />
  <interconnectRequirement for="$system" name="qsys_mm.clockCrossingAdapter" value="HANDSHAKE" />
  <interconnectRequirement for="$system" name="qsys_mm.enableEccProtection" value="FALSE" />
  <interconnectRequirement for="$system" name="qsys_mm.insertDefaultSlave" value="FALSE" />

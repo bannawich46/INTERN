@@ -16,13 +16,12 @@ End PRJ_TOP;
 Architecture RTL of PRJ_TOP is 
 
 	Component Assignment4 is
-		Port (
-			clk_clk						: in  std_logic;
-			reset_reset_n				: in  std_logic;
-			pio_0_conduit_end_export	: inout std_logic_vector(7 downto 0);
-			pio_1_conduit_end_export	: inout std_logic_vector(0 downto 0)
+		port (
+			clk_clk						: in std_logic;												-- clk
+			reset_reset_n				: in std_logic;												-- reset_n
+			pio_0_conduit_end_export	: inout std_logic_vector(8 downto 0)						-- export
 		);
-	End component Assignment4;
+	End Component Assignment4;
 
 
 signal	wLED	:  std_logic_vector(7 downto 0);
@@ -33,8 +32,8 @@ Begin
 	Port map	(
 		clk_clk									=> CLK,
 		reset_reset_n							=> RST,
-		pio_0_conduit_end_export				=> wLED,
-		pio_1_conduit_end_export				=> SW
+		pio_0_conduit_end_export(7 downto 0)	=> wLED,
+		pio_0_conduit_end_export(8 downto 8)	=> SW
 	);
 	
 	LED <= not wLED;
