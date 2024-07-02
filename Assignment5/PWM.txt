@@ -1,0 +1,1 @@
+PWM IP สร้าง LED output ที่ตั้งค่า duty cycle 0-100% และ Freq 16ค่า ในช่วง 1 Hz - 100 kHz ได้ผ่าน Avalon
