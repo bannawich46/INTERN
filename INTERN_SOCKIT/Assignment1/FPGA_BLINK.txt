@@ -1,0 +1,2 @@
+FPGA CycloneV project โดยให้ boot จาก EPCQ256 
+(LED Blink every 1s)
