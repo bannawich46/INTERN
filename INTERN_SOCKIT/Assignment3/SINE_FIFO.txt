@@ -1,0 +1,4 @@
+สร้างสัญญาณ Sine wave เก็บใน FIFO
+set data from ARM (uboot) : ใช้ command ใน sine_wave.ttl
+output 8bit 10 MHz (sine wave) :  (FPGA_LED) เฉพาะ  bit[3: 0]
+bit ที่เหลือออก pin I/O ซึ่งจะต้องจับสัญญาณโดยใช้ signaltap
