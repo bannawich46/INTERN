@@ -1,0 +1,134 @@
+;var data_values = ["0x7F", "0x8B", "0x98", "0xA4", "0xB0", "0xBB", "0xC6", "0xD0", "0xD9", "0xE2", "0xE9", "0xF0", "0xF5", "0xF9", "0xFC", "0xFD", "0xFD", "0xFD", "0xFA", "0xF7", "0xF2", "0xEC", "0xE6", "0xDE", "0xD5", "0xCB", "0xC1", "0xB6", "0xAA", "0x9E", "0x91", "0x85", "0x78", "0x6C", "0x5F", "0x53", "0x47", "0x3C", "0x32", "0x28", "0x1F", "0x17", "0x11", "0x0B", "0x06", "0x03", "0x00", "0x00", "0x00", "0x01", "0x04", "0x08", "0x0D", "0x14", "0x1B", "0x24", "0x2D", "0x37", "0x42", "0x4D", "0x59", "0x65", "0x72", "0x7E"]
+
+;for i 0 63
+;	sendln "mw.l 0xFF208000 " + data_values[i]
+;next
+
+sendln "mw.l 0xFF200000 0x7F"
+mpause 100         
+sendln "mw.l 0xFF200004 0x8B"
+mpause 100         
+sendln "mw.l 0xFF200008 0x98"
+mpause 100         
+sendln "mw.l 0xFF20000C 0xA4"
+mpause 100         
+sendln "mw.l 0xFF200010 0xB0"
+mpause 100         
+sendln "mw.l 0xFF200014 0xBB"
+mpause 100         
+sendln "mw.l 0xFF200018 0xC6"
+mpause 100         
+sendln "mw.l 0xFF20001C 0xD0"
+mpause 100         
+sendln "mw.l 0xFF200020 0xD9"
+mpause 100         
+sendln "mw.l 0xFF200024 0xE2"
+mpause 100         
+sendln "mw.l 0xFF200028 0xE9"
+mpause 100         
+sendln "mw.l 0xFF20002C 0xF0"
+mpause 100         
+sendln "mw.l 0xFF200030 0xF5"
+mpause 100         
+sendln "mw.l 0xFF200034 0xF9"
+mpause 100         
+sendln "mw.l 0xFF200038 0xFC"
+mpause 100         
+sendln "mw.l 0xFF20003C 0xFD"
+mpause 100         
+sendln "mw.l 0xFF200040 0xFD"
+mpause 100         
+sendln "mw.l 0xFF200044 0xFD"
+mpause 100         
+sendln "mw.l 0xFF200048 0xFA"
+mpause 100         
+sendln "mw.l 0xFF20004C 0xF7"
+mpause 100         
+sendln "mw.l 0xFF200050 0xF2"
+mpause 100         
+sendln "mw.l 0xFF200054 0xEC"
+mpause 100         
+sendln "mw.l 0xFF200058 0xE6"
+mpause 100         
+sendln "mw.l 0xFF20005C 0xDE"
+mpause 100         
+sendln "mw.l 0xFF200060 0xD5"
+mpause 100         
+sendln "mw.l 0xFF200064 0xCB"
+mpause 100         
+sendln "mw.l 0xFF200068 0xC1"
+mpause 100         
+sendln "mw.l 0xFF20006C 0xB6"
+mpause 100         
+sendln "mw.l 0xFF200070 0xAA"
+mpause 100         
+sendln "mw.l 0xFF200074 0x9E"
+mpause 100         
+sendln "mw.l 0xFF200078 0x91"
+mpause 100         
+sendln "mw.l 0xFF20007C 0x85"
+mpause 100         
+sendln "mw.l 0xFF200080 0x78"
+mpause 100         
+sendln "mw.l 0xFF200084 0x6C"
+mpause 100         
+sendln "mw.l 0xFF200088 0x5F"
+mpause 100         
+sendln "mw.l 0xFF20008C 0x53"
+mpause 100         
+sendln "mw.l 0xFF200090 0x47"
+mpause 100         
+sendln "mw.l 0xFF200094 0x3C"
+mpause 100         
+sendln "mw.l 0xFF200098 0x32"
+mpause 100         
+sendln "mw.l 0xFF20009C 0x28"
+mpause 100         
+sendln "mw.l 0xFF2000A0 0x1F"
+mpause 100         
+sendln "mw.l 0xFF2000A4 0x17"
+mpause 100         
+sendln "mw.l 0xFF2000A8 0x11"
+mpause 100         
+sendln "mw.l 0xFF2000AC 0x0B"
+mpause 100         
+sendln "mw.l 0xFF2000B0 0x06"
+mpause 100         
+sendln "mw.l 0xFF2000B4 0x03"
+mpause 100         
+sendln "mw.l 0xFF2000B8 0x00"
+mpause 100         
+sendln "mw.l 0xFF2000BC 0x00"
+mpause 100         
+sendln "mw.l 0xFF2000C0 0x00"
+mpause 100         
+sendln "mw.l 0xFF2000C4 0x01"
+mpause 100         
+sendln "mw.l 0xFF2000C8 0x04"
+mpause 100         
+sendln "mw.l 0xFF2000CC 0x08"
+mpause 100         
+sendln "mw.l 0xFF2000D0 0x0D"
+mpause 100         
+sendln "mw.l 0xFF2000D4 0x14"
+mpause 100         
+sendln "mw.l 0xFF2000D8 0x1B"
+mpause 100         
+sendln "mw.l 0xFF2000DC 0x24"
+mpause 100         
+sendln "mw.l 0xFF2000E0 0x2D"
+mpause 100         
+sendln "mw.l 0xFF2000E4 0x37"
+mpause 100         
+sendln "mw.l 0xFF2000E8 0x42"
+mpause 100         
+sendln "mw.l 0xFF2000EC 0x4D"
+mpause 100         
+sendln "mw.l 0xFF2000F0 0x59"
+mpause 100         
+sendln "mw.l 0xFF2000F4 0x65"
+mpause 100         
+sendln "mw.l 0xFF2000F8 0x72"
+mpause 100         
+sendln "mw.l 0xFF2000FC 0x7E"
+mpause 100
