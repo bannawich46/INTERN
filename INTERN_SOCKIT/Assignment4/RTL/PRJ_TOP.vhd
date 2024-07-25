@@ -113,22 +113,6 @@ Architecture RTL Of PRJ_TOP Is
 			pulse_out : out std_logic
 		);
 	End Component altera_edge_detector;
-
-	Component FIFO_CTRL Is
-		Port (
-			CLK50			: in	std_logic;
-
-			iADDRESS		: in	std_logic_vector(7 downto 0);
-			iREAD			: in	std_logic;
-			iREADDATA		: out	std_logic_vector(31 downto 0);
-			iWRITE			: in	std_logic;
-			iWRITEDATA		: in	std_logic_vector(31 downto 0);
-			iWAITREQUEST	: out	std_logic;
-			iRESET			: in	std_logic;
-	
-			LED_L			: out	std_logic_vector( 7 downto 0 )
-		);
-	End Component FIFO_CTRL;
 	
 	Component Assignment4 is
 		Port (

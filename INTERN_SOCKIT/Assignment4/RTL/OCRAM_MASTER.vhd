@@ -41,7 +41,7 @@ Architecture RTL Of OCRAM_MASTER Is
 	signal wREAD			: std_logic := '0';
 	signal wREADDATA		: std_logic_vector(31 downto 0) := (others => '0');
 
-	signal wADDRESS_OCRAM	: std_logic_vector(5 downto 0) := (others => '0');
+	signal wADDRESS_OCRAM	: std_logic_vector(5 downto 0) := (others => '1');
 	signal wREAD_OCRAM		: std_logic := '0';
 
 	signal wEXTERNAL		: std_logic_vector(7 downto 0);
@@ -62,7 +62,7 @@ Begin
 		if (RST = '1') then
 			wREAD			<= '0';
 			wREADDATA		<= (others => '0');
-			wADDRESS_OCRAM	<= (others => '0');
+			wADDRESS_OCRAM	<= (others => '1');
 			wREAD_OCRAM		<= '0';
 			wEXTERNAL		<= (others => '0');
 		elsif rising_edge(CLK) then

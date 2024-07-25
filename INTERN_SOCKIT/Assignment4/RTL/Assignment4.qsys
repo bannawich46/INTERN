@@ -33,6 +33,38 @@
          type = "String";
       }
    }
+   element Assignment4
+   {
+      datum _originalDeviceFamily
+      {
+         value = "Cyclone V";
+         type = "String";
+      }
+   }
+   element Assignment4
+   {
+      datum _originalDeviceFamily
+      {
+         value = "Cyclone V";
+         type = "String";
+      }
+   }
+   element Assignment4
+   {
+      datum _originalDeviceFamily
+      {
+         value = "Cyclone V";
+         type = "String";
+      }
+   }
+   element Assignment4
+   {
+      datum _originalDeviceFamily
+      {
+         value = "Cyclone V";
+         type = "String";
+      }
+   }
    element clk_0
    {
       datum _sortIndex
@@ -786,7 +818,7 @@
   <parameter name="enPRInitMode" value="false" />
   <parameter name="enableDiffWidth" value="true" />
   <parameter name="initMemContent" value="true" />
-  <parameter name="initializationFileName" value="onchip_mem.hex" />
+  <parameter name="initializationFileName">D:/Git/INTERN_MAX10_DECA/INTERN_SOCKIT/Assignment4/sine_wave.mif</parameter>
   <parameter name="instanceID" value="NONE" />
   <parameter name="memorySize" value="1024" />
   <parameter name="readDuringWriteMode" value="DONT_CARE" />
@@ -796,7 +828,7 @@
   <parameter name="singleClockOperation" value="false" />
   <parameter name="slave1Latency" value="1" />
   <parameter name="slave2Latency" value="1" />
-  <parameter name="useNonDefaultInitFile" value="false" />
+  <parameter name="useNonDefaultInitFile" value="true" />
   <parameter name="useShallowMemBlocks" value="false" />
   <parameter name="writable" value="true" />
  </module>

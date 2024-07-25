@@ -1,0 +1,128 @@
+sendln "mw.l 0xFF2000FC 0x00"
+mpause 100
+sendln "mw.l 0xFF200000 0x04"
+mpause 100         
+sendln "mw.l 0xFF200004 0x08"
+mpause 100         
+sendln "mw.l 0xFF200008 0x0C"
+mpause 100         
+sendln "mw.l 0xFF20000C 0x10"
+mpause 100         
+sendln "mw.l 0xFF200010 0x14"
+mpause 100         
+sendln "mw.l 0xFF200014 0x18"
+mpause 100         
+sendln "mw.l 0xFF200018 0x1C"
+mpause 100         
+sendln "mw.l 0xFF20001C 0x20"
+mpause 100         
+sendln "mw.l 0xFF200020 0x24"
+mpause 100         
+sendln "mw.l 0xFF200024 0x28"
+mpause 100         
+sendln "mw.l 0xFF200028 0x2C"
+mpause 100         
+sendln "mw.l 0xFF20002C 0x30"
+mpause 100         
+sendln "mw.l 0xFF200030 0x34"
+mpause 100         
+sendln "mw.l 0xFF200034 0x38"
+mpause 100         
+sendln "mw.l 0xFF200038 0x3C"
+mpause 100         
+sendln "mw.l 0xFF20003C 0x41"
+mpause 100         
+sendln "mw.l 0xFF200040 0x45"
+mpause 100         
+sendln "mw.l 0xFF200044 0x49"
+mpause 100         
+sendln "mw.l 0xFF200048 0x4D"
+mpause 100         
+sendln "mw.l 0xFF20004C 0x51"
+mpause 100         
+sendln "mw.l 0xFF200050 0x55"
+mpause 100         
+sendln "mw.l 0xFF200054 0x59"
+mpause 100         
+sendln "mw.l 0xFF200058 0x5D"
+mpause 100         
+sendln "mw.l 0xFF20005C 0x61"
+mpause 100         
+sendln "mw.l 0xFF200060 0x65"
+mpause 100         
+sendln "mw.l 0xFF200064 0x69"
+mpause 100         
+sendln "mw.l 0xFF200068 0x6D"
+mpause 100         
+sendln "mw.l 0xFF20006C 0x71"
+mpause 100         
+sendln "mw.l 0xFF200070 0x75"
+mpause 100         
+sendln "mw.l 0xFF200074 0x79"
+mpause 100         
+sendln "mw.l 0xFF200078 0x7D"
+mpause 100         
+sendln "mw.l 0xFF20007C 0x82"
+mpause 100         
+sendln "mw.l 0xFF200080 0x86"
+mpause 100         
+sendln "mw.l 0xFF200084 0x8A"
+mpause 100         
+sendln "mw.l 0xFF200088 0x8E"
+mpause 100         
+sendln "mw.l 0xFF20008C 0x92"
+mpause 100         
+sendln "mw.l 0xFF200090 0x96"
+mpause 100         
+sendln "mw.l 0xFF200094 0x9A"
+mpause 100         
+sendln "mw.l 0xFF200098 0x9E"
+mpause 100         
+sendln "mw.l 0xFF20009C 0xA2"
+mpause 100         
+sendln "mw.l 0xFF2000A0 0xA6"
+mpause 100         
+sendln "mw.l 0xFF2000A4 0xAA"
+mpause 100         
+sendln "mw.l 0xFF2000A8 0xAE"
+mpause 100         
+sendln "mw.l 0xFF2000AC 0xB2"
+mpause 100         
+sendln "mw.l 0xFF2000B0 0xB6"
+mpause 100         
+sendln "mw.l 0xFF2000B4 0xBA"
+mpause 100         
+sendln "mw.l 0xFF2000B8 0xBE"
+mpause 100         
+sendln "mw.l 0xFF2000BC 0xC3"
+mpause 100         
+sendln "mw.l 0xFF2000C0 0xC7"
+mpause 100         
+sendln "mw.l 0xFF2000C4 0xCB"
+mpause 100         
+sendln "mw.l 0xFF2000C8 0xCF"
+mpause 100         
+sendln "mw.l 0xFF2000CC 0xD3"
+mpause 100         
+sendln "mw.l 0xFF2000D0 0xD7"
+mpause 100         
+sendln "mw.l 0xFF2000D4 0xDB"
+mpause 100         
+sendln "mw.l 0xFF2000D8 0xDF"
+mpause 100         
+sendln "mw.l 0xFF2000DC 0xE3"
+mpause 100         
+sendln "mw.l 0xFF2000E0 0xE7"
+mpause 100         
+sendln "mw.l 0xFF2000E4 0xEB"
+mpause 100         
+sendln "mw.l 0xFF2000E8 0xEF"
+mpause 100         
+sendln "mw.l 0xFF2000EC 0xF3"
+mpause 100         
+sendln "mw.l 0xFF2000F0 0xF7"
+mpause 100         
+sendln "mw.l 0xFF2000F4 0xFB"
+mpause 100         
+sendln "mw.l 0xFF2000F8 0xFF"
+mpause 100         

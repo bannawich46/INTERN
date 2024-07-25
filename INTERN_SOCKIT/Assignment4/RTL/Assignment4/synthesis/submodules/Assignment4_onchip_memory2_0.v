@@ -46,7 +46,7 @@ module Assignment4_onchip_memory2_0 (
                                     )
 ;
 
-  parameter INIT_FILE = "Assignment4_onchip_memory2_0.hex";
+  parameter INIT_FILE = "D:/Git/INTERN_MAX10_DECA/INTERN_SOCKIT/Assignment4/sine_wave.mif";
 
 
   output  [ 31: 0] readdata;
