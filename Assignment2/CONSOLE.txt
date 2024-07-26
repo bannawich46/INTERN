@@ -1,0 +1,1 @@
+NIOS II ส่งข้อความ "Hello World" ออกทาง console ผ่าน usb blaster jtag

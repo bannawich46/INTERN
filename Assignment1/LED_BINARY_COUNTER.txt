@@ -1,0 +1,15 @@
+กด tact SW แล้ว LED นับเพิ่ม , กด tact SW อีกตัว นับลง นับแบบ binary 0x00 -> 0x01 -> 0x02 -> 0xFF (นับตอนปล่อยปุ่ม)
+
+Signal name start with
+i 	:    Module to Module Signal                                        
+w 	:    Module Internal Signal & Resister                            
+k 	:    Constant                                                    
+s	:    State                                                       
+v	:    variable      
+
+- CLK_DIVIDER
+	ใช้สร้างสัญญาณนาฬิกาที่ความถี่ 1 kHz โดยการใช้ Counter นับสัญญาณนาฬิกาที่ความถี่ 50 MHz
+- DEBOUNCE
+	ทำการ Debounce ปุ่ม KEY0 และ KEY1 โดยการใช้ Counter นับสัญญาณปุ่มดังกล่าวตามขอบขาขึ้นของสัญญาณนาฬิกาความถี่ 1 kHz (1 ms) โดยเปรียบเทียบกับสัญญาณก่อนหน้าซึ่งเก็บไว้ใน Register โดย Counter นับขึ้นเมื่อสัญญาณเหมือนเดิม และเมื่อนับได้ถึง 10 รอบ จึงถือว่าสัญญาณนั้นเกิดขึ้นจริง
+- LED_CONTROL
+	ควบคุมการแสดงผลของ LED โดยแสดงตาม Counter ที่นับขึ้นเมื่อ	KEY1 ถูกกด และ นับลงเมื่อ KEY0 ถูกกด

@@ -1,0 +1,1 @@
+ใช้  Altera PIO IP รับค่าจาก SW -> LED ON/OFF + RESET button
